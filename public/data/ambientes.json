@@ -1,6 +1,6 @@
 {
   "schemaVersion": 3,
-  "targetFile": "./assets/ambientes-v3.mind",
+  "targetFile": "./assets/ambientes-v5.mind",
   "ambientes": [
     {
       "id": "redes-telecomunicaciones-02",
@@ -10,19 +10,13 @@
       "descripcion": "Actividad de ejemplo: diseñar una pequeña red de una empresa y comprobar su conectividad.\nRecursos simulados: 24 estaciones y 2 racks con routers y switches.\nDinámica: equipos de 3 estudiantes configuran direcciones IP durante una sesión de 90 minutos.\nHorario ficticio: lunes y miércoles, de 08:00 a 10:00.",
       "narracion": "Hola, soy Byte. El letrero identifica este ambiente como Laboratorio de Redes y Telecomunicaciones. Te presentaré un ejemplo ficticio, no información oficial. Actividad de ejemplo: diseñar una pequeña red de una empresa y comprobar su conectividad. Recursos simulados: 24 estaciones y 2 racks con routers y switches. Dinámica: equipos de 3 estudiantes configuran direcciones IP durante una sesión de 90 minutos. Horario ficticio: lunes y miércoles, de 08:00 a 10:00. Abre el reto de Byte para conseguir un sello en tu pasaporte.",
       "estadoInformacion": "Nombre identificado visualmente. Actividades, recursos, cantidades y horarios ficticios de demostración; no son datos oficiales ni mediciones reales.",
-      "imagenObjetivo": "./assets/redes-02-target.png",
-      "imagenReferencia": "./assets/redes-02-target.png",
+      "imagenObjetivo": "./assets/redes-02-name-target.png",
+      "imagenReferencia": "./assets/redes-02-name-target.png",
       "etiqueta": "Laboratorio 02",
       "resumen": "La señal identifica Redes y Telecomunicaciones, Laboratorio 02.",
       "calidad": "inicial",
-      "width": 150,
-      "height": 445,
-      "matchRegion": [
-        0,
-        0,
-        150,
-        115
-      ],
+      "width": 284,
+      "height": 222,
       "tipoContenido": "demostracion",
       "reto": {
         "pregunta": "¿Cuántas estaciones tiene el laboratorio en este ejemplo?",
@@ -33,7 +27,8 @@
         ],
         "correcta": 1,
         "explicacion": "La ficha de demostración propone 24 estaciones para practicar redes."
-      }
+      },
+      "objetivoFisico": "Placa con el nombre del ambiente; sin exigir otras señales o placas."
     },
     {
       "id": "sistemas-01",
@@ -45,17 +40,11 @@
       "descripcion": "Actividad de ejemplo: crear un inventario digital para una tienda ficticia.\nRecursos simulados: 30 computadoras, un gestor de base de datos y control de versiones.\nDinámica: registrar 30 productos, relacionar ventas y comprobar las consultas en parejas.\nHorario ficticio: martes y jueves, de 10:00 a 12:00.",
       "narracion": "Hola, soy Byte. El letrero identifica este ambiente como Laboratorio de Sistemas de Información 01. Te presentaré un ejemplo ficticio, no información oficial. Actividad de ejemplo: crear un inventario digital para una tienda ficticia. Recursos simulados: 30 computadoras, un gestor de base de datos y control de versiones. Dinámica: registrar 30 productos, relacionar ventas y comprobar las consultas en parejas. Horario ficticio: martes y jueves, de 10:00 a 12:00. Abre el reto de Byte para conseguir un sello en tu pasaporte.",
       "estadoInformacion": "Nombre identificado visualmente. Actividades, recursos, cantidades y horarios ficticios de demostración; no son datos oficiales ni mediciones reales.",
-      "imagenObjetivo": "./assets/sistemas-01-target.png",
-      "imagenReferencia": "./assets/sistemas-01-target.png",
+      "imagenObjetivo": "./assets/sistemas-01-name-target.png",
+      "imagenReferencia": "./assets/sistemas-01-name-target.png",
       "calidad": "experimental",
-      "width": 125,
-      "height": 395,
-      "matchRegion": [
-        0,
-        0,
-        125,
-        115
-      ],
+      "width": 232,
+      "height": 194,
       "tipoContenido": "demostracion",
       "reto": {
         "pregunta": "¿Qué proyecto propone esta ficha de ejemplo?",
@@ -66,7 +55,8 @@
         ],
         "correcta": 0,
         "explicacion": "El inventario permite practicar registros, relaciones y consultas con datos ficticios."
-      }
+      },
+      "objetivoFisico": "Placa con el nombre del ambiente; sin exigir otras señales o placas."
     },
     {
       "id": "sistemas-02",
@@ -78,17 +68,11 @@
       "descripcion": "Actividad de ejemplo: desarrollar una aplicación web para reservar equipos ficticios.\nRecursos simulados: 20 estaciones con editor de código, navegador y repositorio de práctica.\nDinámica: equipos de 4 construyen una pantalla, validan formularios y prueban la reserva antes de publicarla.\nHorario ficticio: lunes y viernes, de 14:00 a 16:00. La placa dice 02 y la señal vertical indica 04; conservamos esa diferencia visual.",
       "narracion": "Hola, soy Byte. El letrero identifica este ambiente como Laboratorio de Sistemas de Información 02. Te presentaré un ejemplo ficticio, no información oficial. Actividad de ejemplo: desarrollar una aplicación web para reservar equipos ficticios. Recursos simulados: 20 estaciones con editor de código, navegador y repositorio de práctica. Dinámica: equipos de 4 construyen una pantalla, validan formularios y prueban la reserva antes de publicarla. Horario ficticio: lunes y viernes, de 14:00 a 16:00. La placa dice 02 y la señal vertical indica 04; conservamos esa diferencia visual. Abre el reto de Byte para conseguir un sello en tu pasaporte.",
       "estadoInformacion": "Nombre identificado visualmente. Actividades, recursos, cantidades y horarios ficticios de demostración; no son datos oficiales ni mediciones reales.",
-      "imagenObjetivo": "./assets/sistemas-02-target.png",
-      "imagenReferencia": "./assets/sistemas-02-target.png",
+      "imagenObjetivo": "./assets/sistemas-02-name-target.png",
+      "imagenReferencia": "./assets/sistemas-02-name-target.png",
       "calidad": "experimental",
-      "width": 155,
-      "height": 388,
-      "matchRegion": [
-        0,
-        0,
-        155,
-        100
-      ],
+      "width": 220,
+      "height": 196,
       "tipoContenido": "demostracion",
       "reto": {
         "pregunta": "En esta práctica, ¿qué se hace antes de publicar la reserva?",
@@ -99,7 +83,8 @@
         ],
         "correcta": 2,
         "explicacion": "La práctica incluye validar formularios y probar el flujo de reserva antes de publicarlo."
-      }
+      },
+      "objetivoFisico": "Placa con el nombre del ambiente; sin exigir otras señales o placas."
     },
     {
       "id": "telematica-03",
@@ -111,11 +96,11 @@
       "descripcion": "Actividad de ejemplo: construir un monitor ambiental conectado a un panel web.\nRecursos simulados: 16 puestos con microcontroladores, sensores de humedad y una red de práctica.\nDinámica: cada equipo envía una lectura cada 30 segundos y observa los cambios en un gráfico.\nHorario ficticio: miércoles, de 14:00 a 16:00.",
       "narracion": "Hola, soy Byte. El letrero identifica este ambiente como Laboratorio de Telemática. Te presentaré un ejemplo ficticio, no información oficial. Actividad de ejemplo: construir un monitor ambiental conectado a un panel web. Recursos simulados: 16 puestos con microcontroladores, sensores de humedad y una red de práctica. Dinámica: cada equipo envía una lectura cada 30 segundos y observa los cambios en un gráfico. Horario ficticio: miércoles, de 14:00 a 16:00. Abre el reto de Byte para conseguir un sello en tu pasaporte.",
       "estadoInformacion": "Nombre identificado visualmente. Actividades, recursos, cantidades y horarios ficticios de demostración; no son datos oficiales ni mediciones reales.",
-      "imagenObjetivo": "./assets/telematica-03-target.png",
-      "imagenReferencia": "./assets/telematica-03-target.png",
+      "imagenObjetivo": "./assets/telematica-03-name-target.png",
+      "imagenReferencia": "./assets/telematica-03-name-target.png",
       "calidad": "experimental",
-      "width": 156,
-      "height": 150,
+      "width": 236,
+      "height": 198,
       "tipoContenido": "demostracion",
       "reto": {
         "pregunta": "¿Cada cuánto se envía una lectura en el ejemplo?",
@@ -126,7 +111,8 @@
         ],
         "correcta": 0,
         "explicacion": "El escenario propone una lectura cada 30 segundos para observar los cambios en el panel."
-      }
+      },
+      "objetivoFisico": "Placa con el nombre del ambiente; sin exigir otras señales o placas."
     },
     {
       "id": "tutoria",
@@ -165,11 +151,11 @@
       "descripcion": "Actividad de ejemplo: taller de diseño de un proyecto de investigación ficticio.\nRecursos simulados: sala para 12 participantes, proyector y documentos de práctica.\nDinámica: una sesión de 2 horas organiza el proyecto en 4 hitos: pregunta, método, prueba y presentación.\nHorario ficticio: sábado, de 09:00 a 11:00. No representa un programa ni una convocatoria real.",
       "narracion": "Hola, soy Byte. El letrero identifica este ambiente como Unidad de Postgrado. Te presentaré un ejemplo ficticio, no información oficial. Actividad de ejemplo: taller de diseño de un proyecto de investigación ficticio. Recursos simulados: sala para 12 participantes, proyector y documentos de práctica. Dinámica: una sesión de 2 horas organiza el proyecto en 4 hitos: pregunta, método, prueba y presentación. Horario ficticio: sábado, de 09:00 a 11:00. No representa un programa ni una convocatoria real. Abre el reto de Byte para conseguir un sello en tu pasaporte.",
       "estadoInformacion": "Nombre identificado visualmente. Actividades, recursos, cantidades y horarios ficticios de demostración; no son datos oficiales ni mediciones reales.",
-      "imagenObjetivo": "./assets/postgrado-target.png",
-      "imagenReferencia": "./assets/postgrado-target.png",
+      "imagenObjetivo": "./assets/postgrado-name-target.png",
+      "imagenReferencia": "./assets/postgrado-name-target.png",
       "calidad": "experimental",
-      "width": 130,
-      "height": 145,
+      "width": 288,
+      "height": 196,
       "tipoContenido": "demostracion",
       "reto": {
         "pregunta": "¿Cuántos hitos organiza el taller de ejemplo?",
@@ -180,7 +166,8 @@
         ],
         "correcta": 2,
         "explicacion": "Los cuatro hitos del ejercicio son pregunta, método, prueba y presentación."
-      }
+      },
+      "objetivoFisico": "Placa con el nombre del ambiente; sin exigir otras señales o placas."
     },
     {
       "id": "damas",

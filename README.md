@@ -4,6 +4,16 @@ Aplicación WebAR para explorar los letreros de la Facultad de Ingeniería de Si
 
 HTML, CSS y JavaScript, MindAR 1.2.5, A-Frame 1.5.0 y Web Speech API. Sin backend ni base de datos.
 
+## Reconocimiento rápido — versión 0.5.0
+
+Para probar desde casa, abre `pantalla.html` en la laptop, selecciona un letrero y apúntale desde la cámara de FISI-AR en Android. La placa se amplía automáticamente; no se pide cámara en la laptop. El reconocimiento sigue basado en el diseño registrado, no en OCR de cualquier texto o cartel rediseñado.
+
+Se eliminó la segunda espera de adquisición del avatar: tras las dos actualizaciones válidas requeridas por MindAR, la primera pose confirmada se muestra sin esperar varios frames de renderizado. El filtro recibe las poses desde `targetUpdate`, independientemente de los FPS de dibujo, y conserva la mediana, suavizado y rechazo de saltos posteriores. La cámara pide resolución acotada, preferencia por cámara trasera y foco continuo cuando el dispositivo lo permite; el renderizado limita su resolución a 1,5× con antialiasing.
+
+Redes, Sistemas 01, Sistemas 02, Telemática y Postgrado usan su placa principal como objetivo. No requieren que otras placas estén visibles. El comparador evalúa las coincidencias geométricas de todos los candidatos y rechaza los empates cercanos para evitar que un laboratorio parecido gane solo por aparecer antes en el catálogo. Su worker está basado en el protocolo de MindAR 1.2.5 y se empaqueta con esbuild solo durante el desarrollo; el navegador descarga un archivo de aproximadamente 89 KB. `npm run build` vuelve a generarlo; `npm run build:recognizer` permite generarlo por separado.
+
+Consulta `audit/reconocimiento-0.5.0.md` para los resultados y las pruebas pendientes en hardware real.
+
 ## Misión Byte — versión 0.4.0
 
 Cada letrero ofrece una ficha con actividades, recursos, cantidades y horarios **ficticios de demostración**, señalados como datos de ejemplo no oficiales tanto en pantalla como en la narración. Los nombres de los ambientes siguen basándose en evidencia visual.
@@ -14,13 +24,13 @@ Byte incorpora un anillo de datos con nodos en órbita y celebra cada sello nuev
 
 ## Usar la aplicación
 
-Abre el sitio publicado en GitHub Pages desde Chrome para Android, toca **Activar cámara** y permite el acceso. Encuadra la placa del nombre del ambiente; en Redes y los laboratorios de Sistemas incluye también la señal vertical. El catálogo muestra la imagen de referencia de cada objetivo.
+Abre el sitio publicado en GitHub Pages desde Chrome para Android, toca **Activar cámara** y permite el acceso. Centra la placa del nombre del ambiente con sus letras legibles. El catálogo permite abrir cada letrero ampliado para mostrarlo desde otra pantalla.
 
 Mantén pulsadas las flechas de pantalla o teclado para desplazar a Byte. El centro restablece su posición. La burbuja se puede plegar; la narración empieza al tocar **Escuchar**. Perder el objetivo oculta al guía y cancela la voz.
 
 El catálogo contiene nueve ambientes, incluido **Servicios Higiénicos Caballeros**, incorporado con la foto del 20/11/2026. Su objetivo usa el texto y el pictograma para reducir la influencia de reflejos; la placa sigue siendo metálica. Se conserva la discrepancia visual Sistemas de Información 02 / señal vertical 04. Las fichas actuales son ejemplos ficticios y deberán sustituirse por información validada antes de usarlas como guía institucional.
 
-El seguimiento separa el ancla calculada por MindAR del ancla visual de Byte. Exige cuatro poses válidas durante al menos 140 ms, aplica mediana y suavizado de posición/rotación/escala, y rechaza saltos anómalos. Una pérdida breve conserva la última pose hasta 180 ms; después oculta al guía. El procesamiento lento no se confunde con una pérdida: una pose sin actualización caduca a los 2,5 s. Las flechas mantienen su desplazamiento local independiente. La burbuja conserva su lado cerca de los límites y el renderizador usa antialiasing con resolución de hasta 2×.
+El seguimiento separa el ancla calculada por MindAR del ancla visual de Byte. Aplica mediana y suavizado de posición/rotación/escala, y rechaza saltos anómalos después de adquirir la pose confirmada. Una pérdida breve conserva la última pose hasta 180 ms; después oculta al guía. El procesamiento lento no se confunde con una pérdida: una pose sin actualización caduca a los 2,5 s. Las flechas mantienen su desplazamiento local independiente y la burbuja conserva su lado cerca de los límites.
 
 La validación técnica con imágenes sintéticas y secuencias de poses no sustituye las pruebas con los letreros reales y un teléfono. Quedan pendientes estabilidad caminando frente al letrero, reflejos bajo diferentes iluminaciones, velocidad y calidad gráfica en Android. Consulta `audit/validacion-2026-11-20.md`.
 

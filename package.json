@@ -1,6 +1,6 @@
 {
   "name": "fisi-ar",
-  "version": "0.4.0",
+  "version": "0.5.0",
   "private": true,
   "type": "module",
   "scripts": {
@@ -8,9 +8,11 @@
     "build": "node scripts/build.mjs",
     "compile:target": "node scripts/compile-target.mjs",
     "test": "node --test tests/*.test.mjs",
-    "build:pages": "node scripts/build-pages.mjs"
+    "build:pages": "node scripts/build-pages.mjs",
+    "build:recognizer": "node scripts/build-recognizer.mjs"
   },
   "devDependencies": {
+    "esbuild": "0.28.2",
     "mind-ar": "1.2.5"
   },
   "overrides": {

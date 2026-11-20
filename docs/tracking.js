@@ -1,5 +1,18 @@
 // MindAR owns the raw anchor matrix. Display a separate, filtered scene anchor.
 // Distances below are fractions of the physical target width, independent of resolution.
+export function sampleAfterTargetUpdate(record, active = () => true, now = () => performance.now(), onReady = () => {}) {
+  // A-Frame emits targetUpdate before assigning the new matrix. Read it in a
+  // microtask, independently of rendering FPS, after that assignment completes.
+  queueMicrotask(() => {
+    const raw = record.anchor.object3D;
+    if (!active() || !raw.visible || raw.matrix === record.lastMatrix) return;
+    record.lastMatrix = raw.matrix;
+    const wasReady = record.filter.ready;
+    record.filter.sample(raw.matrix, now());
+    if (!wasReady && record.filter.ready) onReady();
+  });
+}
+
 export class StablePose {
   constructor(T) {
     this.T = T;
@@ -28,7 +41,9 @@ export class StablePose {
     this.targetP = this.p.clone();
     for (const axis of ['x', 'y', 'z']) this.targetP[axis] = this.history.map(v => v.p[axis]).sort((a, b) => a - b)[Math.floor(this.history.length / 2)];
     this.targetQ = this.q.clone(); this.targetS = this.s.clone();
-    if (!this.ready && this.history.length >= 4 && now - this.started >= 140) {
+    // This input is an anchor already confirmed by MindAR's warmup gate.
+    // Show its first valid pose immediately; smooth/reject later updates.
+    if (!this.ready) {
       this.ready = true;
       this.position.copy(this.targetP); this.rotation.copy(this.targetQ); this.scale.copy(this.targetS);
     }

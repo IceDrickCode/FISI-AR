@@ -2,6 +2,7 @@ import fs from 'node:fs/promises';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { decode } from '@msgpack/msgpack';
+import './build-recognizer.mjs';
 const root = fileURLToPath(new URL('../', import.meta.url));
 const publicDir = path.join(root, 'public');
 await fs.mkdir(path.join(publicDir, 'vendor'), { recursive: true });
@@ -12,7 +13,7 @@ if (target.dataList?.length !== catalog.ambientes.length) throw new Error('El .m
 for (const [index, room] of catalog.ambientes.entries()) {
   if (room.targetIndex !== index || target.dataList[index].targetImage.width !== room.width || target.dataList[index].targetImage.height !== room.height) throw new Error(`Objetivo desalineado: ${room.id}`);
 }
-for (const name of ['index.html', 'app.js', 'state.js', 'guide-math.js', 'tracking.js', 'avatar.js', 'missions.js', 'styles.css', 'vendor/aframe-1.5.0.min.js']) {
+for (const name of ['index.html', 'app.js', 'camera.js', 'pantalla.html', 'pantalla.js', 'state.js', 'guide-math.js', 'tracking.js', 'avatar.js', 'missions.js', 'styles.css', 'vendor/aframe-1.5.0.min.js', 'vendor/recognition-worker-0.5.0.js']) {
   if ((await fs.stat(path.join(publicDir, name))).size === 0) throw new Error(`Archivo vacío: ${name}`);
 }
 // Copy over the known output directory; no recursive deletion or original-resource mutation.

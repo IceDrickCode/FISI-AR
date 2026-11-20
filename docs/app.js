@@ -2,7 +2,8 @@ import { initialState, transition } from './state.js';
 import { moveOffset, placeBubble } from './guide-math.js?v=0.3.0';
 import { avatarMarkup } from './avatar.js?v=0.4.0';
 import { createMissions } from './missions.js?v=0.4.0';
-import { StablePose, TargetLock } from './tracking.js?v=0.3.0';
+import { StablePose, TargetLock, sampleAfterTargetUpdate } from './tracking.js?v=0.5.0';
+import { startCamera } from './camera.js?v=0.5.0';
 
 const $ = id => document.getElementById(id);
 const keyboard = new Set(), pointers = new Map(), actors = new Map(), offsets = new Map();
@@ -93,10 +94,6 @@ function frame(delta) {
   const now = performance.now(), visible = [];
   for (const [index, record] of actors) {
     const raw = record.anchor.object3D;
-    // Only count actual camera pose updates, never repeated rendering frames.
-    if (raw.visible && raw.matrix !== record.lastMatrix) {
-      record.lastMatrix = raw.matrix; record.filter.sample(raw.matrix, now);
-    }
     if (record.filter.tick(now, raw.visible)) {
       record.display.object3D.matrix.copy(record.filter.matrix);
       record.display.object3D.matrixWorldNeedsUpdate = true;
@@ -148,7 +145,7 @@ async function start() {
     if (!AFRAME.components['fisi-frame']) AFRAME.registerComponent('fisi-frame', { tick(_time, delta) { frame(delta || 0); } });
     scene = document.createElement('a-scene'); scene.setAttribute('embedded', '');
     scene.setAttribute('fisi-frame', '');
-    scene.setAttribute('mindar-image', `imageTargetSrc: ${catalog.targetFile}; autoStart: false; maxTrack: 1; uiLoading: no; uiScanning: no; uiError: no; warmupTolerance: 5; missTolerance: 3; filterMinCF: 0.001; filterBeta: 10`);
+    scene.setAttribute('mindar-image', `imageTargetSrc: ${catalog.targetFile}; autoStart: false; maxTrack: 1; uiLoading: no; uiScanning: no; uiError: no; warmupTolerance: 1; missTolerance: 3; filterMinCF: 0.001; filterBeta: 10`);
     scene.setAttribute('renderer', 'colorManagement: true; alpha: true; antialias: true; precision: high');
     scene.setAttribute('vr-mode-ui', 'enabled: false'); scene.setAttribute('xr-mode-ui', 'enabled: false');
     scene.setAttribute('device-orientation-permission-ui', 'enabled: false');
@@ -163,8 +160,13 @@ async function start() {
       const actor = display.querySelector('.guide-position'), shape = display.querySelector('.avatar-shape');
       const avatarScale = Math.min(0.65, Math.max(0.32, room.height / room.width * 0.48));
       shape.setAttribute('scale', `${avatarScale} ${avatarScale} ${avatarScale}`);
-      actors.set(room.targetIndex, { anchor, display, actor, shape, filter: new StablePose(AFRAME.THREE), baseX: room.height / room.width > 2 ? -0.48 : -0.3, baseY: Math.min(0.45, room.height / room.width * 0.18) });
+      const record = { anchor, display, actor, shape, filter: new StablePose(AFRAME.THREE), baseX: room.height / room.width > 2 ? -0.48 : -0.3, baseY: Math.min(0.45, room.height / room.width * 0.18) };
+      actors.set(room.targetIndex, record);
       offsets.set(room.targetIndex, { x: 0, y: 0 });
+      anchor.addEventListener('targetUpdate', () => sampleAfterTargetUpdate(record, () => !terminated, () => performance.now(), () => {
+        frame(0);
+        if (scene.camera && !terminated) scene.renderer.render(scene.object3D, scene.camera);
+      }));
       anchor.addEventListener('targetFound', () => { if (!terminated) log('rawFound', room.targetIndex); });
       anchor.addEventListener('targetLost', () => {
         if (terminated) return;
@@ -176,8 +178,13 @@ async function start() {
     scene.addEventListener('arReady', () => { if (!terminated) update('ready'); });
     scene.addEventListener('arError', () => fail('No se pudo abrir la cámara. Comprueba el permiso del sitio y que ninguna otra aplicación la esté usando.'));
     scene.addEventListener('renderstart', () => {
-      scene.renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
+      scene.renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 1.5));
+      if (scene.camera) scene.renderer.compile(scene.object3D, scene.camera);
       arSystem = scene.systems['mindar-image-system'];
+      arSystem._startVideo = () => startCamera(arSystem, {
+        active: () => !terminated,
+        onError: error => { console.error(error); fail('No se pudo abrir la cámara. Revisa el permiso y vuelve a iniciar.'); }
+      });
       const nativeStartAR = arSystem._startAR.bind(arSystem);
       // Version-pinned MindAR starts asynchronously; also catch failures loading targets or WebGL.
       arSystem._startAR = async () => {
@@ -186,7 +193,16 @@ async function start() {
           arSystem.video.srcObject?.getVideoTracks().forEach(track => track.addEventListener('ended', () => {
             if (!terminated) fail('La cámara se desconectó. Vuelve a iniciar.');
           }));
-          await nativeStartAR(); if (terminated) releaseCamera();
+          log('cameraInput', `${arSystem.video.videoWidth}x${arSystem.video.videoHeight}`);
+          const preparing = nativeStartAR();
+          // Native _startAR creates the controller, then awaits its target fetch.
+          // Replace its worker before setup so all candidates can be compared.
+          const controller = arSystem.controller, oldWorker = controller.worker;
+          const worker = new Worker(new URL('./vendor/recognition-worker-0.5.0.js', import.meta.url));
+          worker.onmessage = oldWorker.onmessage;
+          worker.onerror = error => { console.error(error); fail('No se pudo iniciar el reconocimiento. Recarga la página.'); };
+          controller.worker = worker; oldWorker.terminate();
+          await preparing; if (terminated) releaseCamera();
         } catch (error) { console.error(error); fail('No se pudo preparar el reconocimiento. Comprueba WebGL y el archivo de objetivos.'); }
       };
       arSystem.start();
@@ -250,7 +266,7 @@ function renderCatalog() {
     const image = document.createElement('img'); image.src = room.imagenObjetivo; image.alt = `Objetivo: ${room.nombre}`; image.loading = 'lazy';
     const content = document.createElement('div'), title = document.createElement('h3'), label = document.createElement('p'), link = document.createElement('a');
     title.textContent = room.nombre; label.textContent = room.etiqueta;
-    link.textContent = 'Ver referencia'; link.href = room.imagenReferencia; link.target = '_blank'; link.rel = 'noopener';
+    link.textContent = 'Mostrar letrero en pantalla'; link.href = `./pantalla.html?ambiente=${encodeURIComponent(room.id)}`; link.target = '_blank'; link.rel = 'noopener';
     const stamp = document.createElement('span'); stamp.className = 'catalog-stamp'; stamp.dataset.roomId = room.id;
     content.append(title, label, stamp, link); article.append(image, content); $('catalog').append(article);
   }
@@ -262,7 +278,7 @@ function renderCatalog() {
 try {
   if (document.readyState !== 'complete') await new Promise(resolve => window.addEventListener('load', resolve, { once: true }));
   if (!window.AFRAME?.components['mindar-image']) throw new Error('Bibliotecas AR no disponibles.');
-  const response = await fetch('./data/ambientes.json?v=0.4.0'); if (!response.ok) throw new Error('Catálogo no disponible.');
+  const response = await fetch('./data/ambientes.json?v=0.5.0'); if (!response.ok) throw new Error('Catálogo no disponible.');
   catalog = await response.json();
   if (!catalog.ambientes.length || catalog.ambientes.some((room, index) => room.targetIndex !== index)) throw new Error('Índices de objetivos incorrectos.');
   const target = await fetch(catalog.targetFile); if (!target.ok || (await target.arrayBuffer()).byteLength < 100) throw new Error('Archivo .mind ausente o vacío.');

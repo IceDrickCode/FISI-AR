@@ -7,10 +7,10 @@
   <meta name="description" content="FISI-AR: explora la señalización de la FISI, UNSM, con un guía virtual.">
   <title>FISI-AR · Descubre tu facultad</title>
   <link rel="icon" href="data:,">
-  <link rel="stylesheet" href="./styles.css?v=0.4.0">
+  <link rel="stylesheet" href="./styles.css?v=0.5.0">
   <script src="./vendor/aframe-1.5.0.min.js" defer></script>
   <script src="./vendor/mindar-image-aframe-1.2.5.prod.js" defer></script>
-  <script type="module" src="./app.js?v=0.4.0"></script>
+  <script type="module" src="./app.js?v=0.5.0"></script>
 </head>
 <body>
   <div id="ar-stage" aria-label="Vista de realidad aumentada"></div>
@@ -27,7 +27,7 @@
         <p class="demo-note">Contenido de demostración: las actividades, cantidades y horarios de las fichas son ejemplos ficticios, no información oficial de la facultad.</p>
         <div class="catalog-heading"><h2>Letreros disponibles</h2><span id="catalog-count"></span></div>
         <div id="catalog" class="catalog"></div>
-        <p class="help">En los laboratorios, enfoca el nombre y deja visible la señal vertical: ambas placas ayudan al seguimiento. El número por sí solo no basta. Mantén pulsadas las flechas para mover al guía o usa el teclado. Toca el centro para centrarlo.</p>
+        <p class="help">Centra la placa con el nombre del ambiente; no hace falta incluir la señal vertical de los laboratorios. Para probar desde casa, abre <a href="./pantalla.html" target="_blank" rel="noopener">los letreros en tu laptop</a> y apúntales con la cámara del celular. Usa el mismo diseño registrado, con el nombre legible y sin reflejos. Mantén pulsadas las flechas para mover al guía.</p>
         <details class="pending"><summary>Capturas pendientes</summary><ul id="pending-list"></ul></details>
       </section>
       <section id="scanner" hidden aria-label="Escáner activo">
@@ -35,7 +35,7 @@
         <button id="stop" class="secondary close-camera">Cerrar cámara</button>
         <button class="ar-passport secondary" data-open-passport aria-label="Abrir pasaporte de Misión Byte">◇ <span data-passport-count>0/9 sellos</span></button>
         <div id="viewfinder" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
-        <p id="scan-hint">Encuadra el letrero de uno de los ambientes del catálogo. Evita reflejos y mueve el celular despacio.</p>
+        <p id="scan-hint">Centra la placa del nombre y acércate hasta que sus letras se vean claras. También puedes apuntar a su imagen grande en otra pantalla.</p>
         <article id="bubble" class="speech-bubble" hidden aria-label="Mensaje de Byte">
           <div class="bubble-heading"><span id="room-label" class="eyebrow"></span><button id="collapse-bubble" aria-label="Plegar información" aria-expanded="true">−</button></div>
           <div class="bubble-content" tabindex="0" role="region" aria-labelledby="room-name">

@@ -4,100 +4,91 @@
     {
       "id": "redes-telecomunicaciones-02",
       "targetIndex": 0,
-      "sourceSha256": "06f905e463075d44419a0cc4248d6db48f6582314a7bd8b434302033baa8c124",
-      "trainingSignature": "6c81743e8e735cce06985ee4217a7fbbc3b23a4c44b8afda288e418f3d3ef49f",
-      "matchRegion": [
-        0,
-        0,
-        150,
-        115
-      ],
-      "outputSha256": "ccabb959e1e9786341a218336daef8b56c52a56ed9239422135d3d78255a6620",
+      "sourceSha256": "ddb6c0a18b381015060429945099164a4e5793f6f6b73c8dd1f170b56384a7b5",
+      "trainingSignature": "4d24c5e6bd6dc936c98c6d2fc2c0cdcc509faf043282146352c295b905c5f0f2",
+      "matchRegion": null,
+      "outputSha256": "1157783f6d6c45f3179da570d664df02ff92a9d9864adfc3e01fef8062429caa",
       "reused": true,
-      "width": 150,
-      "height": 445,
+      "width": 284,
+      "height": 222,
       "matchingPoints": [
-        87,
-        66,
-        37
+        240,
+        213,
+        182,
+        135,
+        68
       ],
       "trackingPoints": [
         0,
-        27
+        16
       ],
-      "runtimeTrackingPoints": 27
+      "runtimeTrackingPoints": 16
     },
     {
       "id": "sistemas-01",
       "targetIndex": 1,
-      "sourceSha256": "c81b78b4ed480707c54136ffac9f7db7a97ab403203bada2f3c8d1ec4fca0b89",
-      "trainingSignature": "95a59f5127ec3e61762c31a8b2f4949775bb7456499cdd71e3655ff752c6ef9f",
-      "matchRegion": [
-        0,
-        0,
-        125,
-        115
-      ],
-      "outputSha256": "12b940d330499b9ff1a877749d84e364705ae875bf4bea66907dd93b435d6b62",
+      "sourceSha256": "ab55a1ac65703c36ab140a3294f38666ee584c05f6f39c5e932ddfdbfe3431d2",
+      "trainingSignature": "2f79893066cea48a315183821dc290b42043367eec53e96f5c06c0f070858e1b",
+      "matchRegion": null,
+      "outputSha256": "f80f86d6f51b2234a8a781b6b77420a9fd1d5028e6ef5834c1ffbe1bd52a6a99",
       "reused": true,
-      "width": 125,
-      "height": 395,
+      "width": 232,
+      "height": 194,
       "matchingPoints": [
-        69,
-        47
+        220,
+        187,
+        142,
+        75
       ],
       "trackingPoints": [
         0,
-        21
+        16
       ],
-      "runtimeTrackingPoints": 21
+      "runtimeTrackingPoints": 16
     },
     {
       "id": "sistemas-02",
       "targetIndex": 2,
-      "sourceSha256": "7ad3dc7827698463489231c33d90d42bdcb4a462925d259b35f98c278f04c3c6",
-      "trainingSignature": "29e617e5347a12c47ae74cfba2d775e1bf3b93fa3b3c6a83a4b1a2bcf5cbb135",
-      "matchRegion": [
-        0,
-        0,
-        155,
-        100
-      ],
-      "outputSha256": "45d3e8082bd5142ac6919830e4f58db1f0f9c8d9b86e8e276cba460e3654d958",
-      "reused": true,
-      "width": 155,
-      "height": 388,
-      "matchingPoints": [
-        68,
-        44,
-        34
-      ],
-      "trackingPoints": [
-        0,
-        18
-      ],
-      "runtimeTrackingPoints": 18
-    },
-    {
-      "id": "telematica-03",
-      "targetIndex": 3,
-      "sourceSha256": "a2866b52dda3a3128b7f72aa953af1a74e709cb1e457839da2610051f20082d1",
-      "trainingSignature": "b0efb04f958f19877d319efffb1225b441e81cbda75efde2d0bceebafe8c7f71",
+      "sourceSha256": "28519921ddde7127c67c6ced0262208613c552c7619ad153faea721857c0ed43",
+      "trainingSignature": "c54004219e0ecfa5c7757a0509f40482196dda0e0d00ae7f698f3ba90a1d3a86",
       "matchRegion": null,
-      "outputSha256": "0e69b1f40fc525a971e88af6461ede9c138d3355a836895708fbab00c005c144",
+      "outputSha256": "9770413464dd92869b2f555fe2903f7182934c1ecb77ebccc204af2f32747ffe",
       "reused": true,
-      "width": 156,
-      "height": 150,
+      "width": 220,
+      "height": 196,
       "matchingPoints": [
-        90,
-        54,
-        43
+        199,
+        164,
+        117,
+        57
       ],
       "trackingPoints": [
         0,
         7
       ],
       "runtimeTrackingPoints": 7
+    },
+    {
+      "id": "telematica-03",
+      "targetIndex": 3,
+      "sourceSha256": "9602720bf74e8ef6e3682b8ad3adc86a52f09f47f38353d24195deb2b874fcb3",
+      "trainingSignature": "c1116a306a5fa2ddb9ed202411441032086b27b42fe4b90bb506c62b11062544",
+      "matchRegion": null,
+      "outputSha256": "f969ea5dad9a36197b06f5a576ce1426dbd42c15b557561d78e42c059d58d218",
+      "reused": false,
+      "width": 236,
+      "height": 198,
+      "matchingPoints": [
+        174,
+        141,
+        102,
+        75
+      ],
+      "trackingPoints": [
+        0,
+        20
+      ],
+      "runtimeTrackingPoints": 20
     },
     {
       "id": "tutoria",
@@ -124,22 +115,24 @@
     {
       "id": "postgrado",
       "targetIndex": 5,
-      "sourceSha256": "8e7a8f970fcc55dd7c7e14261a494cda5a47b2fd5ec388f73acb2ef8b0784f83",
-      "trainingSignature": "3dc362f503f783773c67603691eb7656125ed2aa01c8980d7984f686d5236b74",
+      "sourceSha256": "cdb180b9cb30a9fc68d36bee2d38e0f82b09497a9dbbd19038f5f337a2eec59a",
+      "trainingSignature": "db36d6c43cfe4506b2c777bfdd75bc1d85306bc93792747c35cd1d0dc2548e7e",
       "matchRegion": null,
-      "outputSha256": "27fd1becb8108e7b70fe8eebba239548f891344a7861cb5b10f5f63c1fffd3ec",
-      "reused": true,
-      "width": 130,
-      "height": 145,
+      "outputSha256": "2b4debe2777d8a185e518bf6042dc330a53c6d9cd5ae7d229249139a4179c57b",
+      "reused": false,
+      "width": 288,
+      "height": 196,
       "matchingPoints": [
-        65,
-        44
+        179,
+        199,
+        118,
+        72
       ],
       "trackingPoints": [
         0,
-        11
+        32
       ],
-      "runtimeTrackingPoints": 11
+      "runtimeTrackingPoints": 32
     },
     {
       "id": "damas",
@@ -209,7 +202,7 @@
         ]
       ],
       "outputSha256": "422a771bcd0e0e69ceabb378b761a885c34dc0a3e858f531d63bea1cf3650fc3",
-      "reused": false,
+      "reused": true,
       "width": 640,
       "height": 430,
       "matchingPoints": [
@@ -229,7 +222,7 @@
       "runtimeTrackingPoints": 21
     }
   ],
-  "outputSha256": "535c0d44ddb7e7cce65bc83e4794d2eb7eba1a66a2cf48e3a33efd5b541e234a",
-  "bytes": 1901822,
+  "outputSha256": "50e42820ea08dc0e2e376051643d31d9e92442b30f03fd46fd6ee0fc40466945",
+  "bytes": 1948361,
   "validation": "Technical feature extraction only. Physical validation remains pending."
 }

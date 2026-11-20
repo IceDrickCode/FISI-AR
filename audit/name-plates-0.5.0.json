@@ -1,0 +1,82 @@
+[
+  {
+    "id": "redes-telecomunicaciones-02",
+    "source": "redes-02-target.png",
+    "sourceSha256": "06f905e463075d44419a0cc4248d6db48f6582314a7bd8b434302033baa8c124",
+    "crop": [
+      4,
+      4,
+      146,
+      115
+    ],
+    "resampling": "2x bicubic, to keep the active 128px tracking pyramid below source size; no new features invented",
+    "target": "redes-02-name-target.png",
+    "width": 284,
+    "height": 222,
+    "reason": "Isolate the actual planar name plate; do not require two separate plaques for tracking."
+  },
+  {
+    "id": "sistemas-01",
+    "source": "sistemas-01-target.png",
+    "sourceSha256": "c81b78b4ed480707c54136ffac9f7db7a97ab403203bada2f3c8d1ec4fca0b89",
+    "crop": [
+      3,
+      5,
+      119,
+      102
+    ],
+    "resampling": "2x bicubic, to keep the active 128px tracking pyramid below source size; no new features invented",
+    "target": "sistemas-01-name-target.png",
+    "width": 232,
+    "height": 194,
+    "reason": "Isolate the actual planar name plate; do not require two separate plaques for tracking."
+  },
+  {
+    "id": "sistemas-02",
+    "source": "sistemas-02-target.png",
+    "sourceSha256": "7ad3dc7827698463489231c33d90d42bdcb4a462925d259b35f98c278f04c3c6",
+    "crop": [
+      41,
+      1,
+      151,
+      99
+    ],
+    "resampling": "2x bicubic, to keep the active 128px tracking pyramid below source size; no new features invented",
+    "target": "sistemas-02-name-target.png",
+    "width": 220,
+    "height": 196,
+    "reason": "Isolate the actual planar name plate; do not require two separate plaques for tracking."
+  },
+  {
+    "id": "telematica-03",
+    "source": "telematica-03-target.png",
+    "sourceSha256": "a2866b52dda3a3128b7f72aa953af1a74e709cb1e457839da2610051f20082d1",
+    "crop": [
+      37,
+      27,
+      155,
+      126
+    ],
+    "resampling": "2x bicubic, to keep the active 128px tracking pyramid below source size; no new features invented",
+    "target": "telematica-03-name-target.png",
+    "width": 236,
+    "height": 198,
+    "reason": "Isolate the actual planar name plate; do not require two separate plaques for tracking."
+  },
+  {
+    "id": "postgrado",
+    "source": "postgrado-target.png",
+    "sourceSha256": "8e7a8f970fcc55dd7c7e14261a494cda5a47b2fd5ec388f73acb2ef8b0784f83",
+    "crop": [
+      13,
+      18,
+      85,
+      67
+    ],
+    "resampling": "4x bicubic, to keep the active 128px tracking pyramid below source size; no new features invented",
+    "target": "postgrado-name-target.png",
+    "width": 288,
+    "height": 196,
+    "reason": "Isolate the actual planar name plate; do not require two separate plaques for tracking."
+  }
+]
