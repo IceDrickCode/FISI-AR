@@ -1,0 +1,159 @@
+{
+  "schemaVersion": 2,
+  "targetFile": "./assets/ambientes.mind",
+  "ambientes": [
+    {
+      "id": "redes-telecomunicaciones-02",
+      "targetIndex": 0,
+      "nombre": "Laboratorio de Redes y Telecomunicaciones",
+      "senalVertical": "Laboratorio 02",
+      "descripcion": "Identificado por su letrero y la señal Laboratorio 02. Sus actividades y equipamiento están pendientes de confirmación con la facultad.",
+      "narracion": "Hola, soy Byte, tu guía de FISI AR. El letrero identifica este ambiente como Laboratorio de Redes y Telecomunicaciones. La señal vertical indica Laboratorio cero dos. Las actividades, el equipamiento y los horarios aún deben confirmarse con la facultad.",
+      "estadoInformacion": "Identificación visual verificada; función institucional pendiente de confirmación.",
+      "imagenObjetivo": "./assets/redes-02-target.png",
+      "imagenReferencia": "./assets/redes-02-target.png",
+      "etiqueta": "Laboratorio 02",
+      "resumen": "La señal identifica Redes y Telecomunicaciones, Laboratorio 02.",
+      "calidad": "inicial",
+      "width": 150,
+      "height": 445,
+      "matchRegion": [
+        0,
+        0,
+        150,
+        115
+      ]
+    },
+    {
+      "id": "sistemas-01",
+      "targetIndex": 1,
+      "nombre": "Laboratorio de Sistemas de Información 01",
+      "etiqueta": "Laboratorio 01",
+      "senalVertical": "Laboratorio 01",
+      "resumen": "Dos placas: nombre y señal vertical 01.",
+      "descripcion": "Dos placas: nombre y señal vertical 01. Las actividades, los servicios específicos y los horarios deben confirmarse con la facultad.",
+      "narracion": "Hola, soy Byte, tu guía de FISI AR. Dos placas: nombre y señal vertical 01. La información de actividades y horarios debe confirmarse con la facultad.",
+      "estadoInformacion": "Identificación visual; información institucional por confirmar.",
+      "imagenObjetivo": "./assets/sistemas-01-target.png",
+      "imagenReferencia": "./assets/sistemas-01-target.png",
+      "calidad": "experimental",
+      "width": 125,
+      "height": 395,
+      "matchRegion": [
+        0,
+        0,
+        125,
+        115
+      ]
+    },
+    {
+      "id": "sistemas-02",
+      "targetIndex": 2,
+      "nombre": "Laboratorio de Sistemas de Información 02",
+      "etiqueta": "Señal vertical 04",
+      "senalVertical": "Señal vertical 04",
+      "resumen": "La placa dice Sistemas de Información 02; la señal vertical indica 04.",
+      "descripcion": "La placa dice Sistemas de Información 02; la señal vertical indica 04. Las actividades, los servicios específicos y los horarios deben confirmarse con la facultad.",
+      "narracion": "Hola, soy Byte, tu guía de FISI AR. La placa dice Sistemas de Información 02; la señal vertical indica 04. La información de actividades y horarios debe confirmarse con la facultad.",
+      "estadoInformacion": "Identificación visual; información institucional por confirmar.",
+      "imagenObjetivo": "./assets/sistemas-02-target.png",
+      "imagenReferencia": "./assets/sistemas-02-target.png",
+      "calidad": "experimental",
+      "width": 155,
+      "height": 388,
+      "matchRegion": [
+        0,
+        0,
+        155,
+        100
+      ]
+    },
+    {
+      "id": "telematica-03",
+      "targetIndex": 3,
+      "nombre": "Laboratorio de Telemática",
+      "etiqueta": "Laboratorio 03",
+      "senalVertical": "Laboratorio 03",
+      "resumen": "La placa identifica Telemática; la señal vertical indica 03.",
+      "descripcion": "La placa identifica Telemática; la señal vertical indica 03. Las actividades, los servicios específicos y los horarios deben confirmarse con la facultad.",
+      "narracion": "Hola, soy Byte, tu guía de FISI AR. La placa identifica Telemática; la señal vertical indica 03. La información de actividades y horarios debe confirmarse con la facultad.",
+      "estadoInformacion": "Identificación visual; información institucional por confirmar.",
+      "imagenObjetivo": "./assets/telematica-03-target.png",
+      "imagenReferencia": "./assets/telematica-03-target.png",
+      "calidad": "experimental",
+      "width": 156,
+      "height": 150
+    },
+    {
+      "id": "tutoria",
+      "targetIndex": 4,
+      "nombre": "Tutoría y Consejería",
+      "etiqueta": "Tutoría y Consejería",
+      "senalVertical": "Tutoría y Consejería",
+      "resumen": "Identificación tomada del cartel superior de Tutoría y Consejería.",
+      "descripcion": "Identificación tomada del cartel superior de Tutoría y Consejería. Las actividades, los servicios específicos y los horarios deben confirmarse con la facultad.",
+      "narracion": "Hola, soy Byte, tu guía de FISI AR. Identificación tomada del cartel superior de Tutoría y Consejería. La información de actividades y horarios debe confirmarse con la facultad.",
+      "estadoInformacion": "Identificación visual; información institucional por confirmar.",
+      "imagenObjetivo": "./assets/tutoria-target.png",
+      "imagenReferencia": "./assets/tutoria-target.png",
+      "calidad": "experimental",
+      "width": 168,
+      "height": 260
+    },
+    {
+      "id": "postgrado",
+      "targetIndex": 5,
+      "nombre": "Unidad de Postgrado",
+      "etiqueta": "Unidad de Postgrado",
+      "senalVertical": "Unidad de Postgrado",
+      "resumen": "El cartel superior identifica la Unidad de Postgrado.",
+      "descripcion": "El cartel superior identifica la Unidad de Postgrado. Las actividades, los servicios específicos y los horarios deben confirmarse con la facultad.",
+      "narracion": "Hola, soy Byte, tu guía de FISI AR. El cartel superior identifica la Unidad de Postgrado. La información de actividades y horarios debe confirmarse con la facultad.",
+      "estadoInformacion": "Identificación visual; información institucional por confirmar.",
+      "imagenObjetivo": "./assets/postgrado-target.png",
+      "imagenReferencia": "./assets/postgrado-target.png",
+      "calidad": "experimental",
+      "width": 130,
+      "height": 145
+    },
+    {
+      "id": "damas",
+      "targetIndex": 6,
+      "nombre": "Servicios Higiénicos Damas",
+      "etiqueta": "Servicios Higiénicos Damas",
+      "senalVertical": "Servicios Higiénicos Damas",
+      "resumen": "La placa identifica los Servicios Higiénicos Damas.",
+      "descripcion": "La placa identifica los Servicios Higiénicos Damas. Las actividades, los servicios específicos y los horarios deben confirmarse con la facultad.",
+      "narracion": "Hola, soy Byte, tu guía de FISI AR. La placa identifica los Servicios Higiénicos Damas. La información de actividades y horarios debe confirmarse con la facultad.",
+      "estadoInformacion": "Identificación visual; información institucional por confirmar.",
+      "imagenObjetivo": "./assets/damas-target.png",
+      "imagenReferencia": "./assets/damas-target.png",
+      "calidad": "experimental",
+      "width": 177,
+      "height": 140
+    },
+    {
+      "id": "bloque-a",
+      "targetIndex": 7,
+      "nombre": "Bloque A — FISI",
+      "etiqueta": "Bloque A · FISI",
+      "senalVertical": "Bloque A · FISI",
+      "resumen": "El letrero exterior identifica el Bloque A de la FISI.",
+      "descripcion": "El letrero exterior identifica el Bloque A de la FISI. Las actividades, los servicios específicos y los horarios deben confirmarse con la facultad.",
+      "narracion": "Hola, soy Byte, tu guía de FISI AR. El letrero exterior identifica el Bloque A de la FISI. La información de actividades y horarios debe confirmarse con la facultad.",
+      "estadoInformacion": "Identificación visual; información institucional por confirmar.",
+      "imagenObjetivo": "./assets/bloque-a-target.png",
+      "imagenReferencia": "./assets/bloque-a-target.png",
+      "calidad": "experimental",
+      "width": 128,
+      "height": 202
+    }
+  ],
+  "pendientes": [
+    {
+      "id": "caballeros",
+      "nombre": "Servicios Higiénicos Caballeros",
+      "motivo": "Reflejos intensos en las fotos 28 y 32. Se necesita una nueva captura sin brillo antes de crear un objetivo fiable."
+    }
+  ]
+}

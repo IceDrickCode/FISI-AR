@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#0c0b10">
+  <meta name="description" content="FISI-AR: explora la señalización de la FISI, UNSM, con un guía virtual.">
+  <title>FISI-AR · Descubre tu facultad</title>
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="./styles.css">
+  <script src="./vendor/aframe-1.5.0.min.js" defer></script>
+  <script src="./vendor/mindar-image-aframe-1.2.5.prod.js" defer></script>
+  <script type="module" src="./app.js"></script>
+</head>
+<body>
+  <div id="ar-stage" aria-label="Vista de realidad aumentada"></div>
+  <div class="app-shell">
+    <header><a class="brand" href="./" aria-label="FISI AR, inicio">◈ FISI<span>AR</span></a><span>UNSM · TARAPOTO</span></header>
+    <main>
+      <section id="welcome">
+        <p class="eyebrow">EXPLORA TU FACULTAD</p>
+        <h1>Tu facultad,<br><em>con otra mirada.</em></h1>
+        <p class="intro">Reconoce un letrero, conoce su nombre y mueve a tu guía virtual por la escena.</p>
+        <button id="start" class="primary" disabled>Preparando recursos…</button>
+        <p class="privacy">Solo cámara, sin micrófono. El reconocimiento se procesa en tu navegador.</p>
+        <div class="catalog-heading"><h2>Letreros disponibles</h2><span id="catalog-count"></span></div>
+        <div id="catalog" class="catalog"></div>
+        <p class="help">En los laboratorios, enfoca el nombre y deja visible la señal vertical: ambas placas ayudan al seguimiento. El número por sí solo no basta. Mantén pulsadas las flechas para mover al guía o usa el teclado. Toca el centro para centrarlo.</p>
+        <details class="pending"><summary>Capturas pendientes</summary><ul id="pending-list"></ul></details>
+      </section>
+      <section id="scanner" hidden aria-label="Escáner activo">
+        <span class="scanner-brand">◈ FISI AR</span>
+        <button id="stop" class="secondary close-camera">Cerrar cámara</button>
+        <div id="viewfinder" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+        <p id="scan-hint">Encuadra el letrero de uno de los ambientes del catálogo. Evita reflejos y mueve el celular despacio.</p>
+        <article id="bubble" class="speech-bubble" hidden aria-label="Mensaje de Byte">
+          <div class="bubble-heading"><span id="room-label" class="eyebrow"></span><button id="collapse-bubble" aria-label="Plegar información" aria-expanded="true">−</button></div>
+          <h2 id="room-name"></h2>
+          <div id="bubble-body"><p id="room-summary"></p><details id="room-details"><summary>Más información</summary><p id="room-description"></p></details></div>
+        </article>
+        <div id="movement" class="movement" role="group" aria-label="Mover al personaje">
+          <span>Mover guía</span>
+          <div class="dpad">
+            <button data-direction="up" aria-label="Mover hacia arriba" disabled>↑</button>
+            <button data-direction="left" aria-label="Mover hacia la izquierda" disabled>←</button>
+            <button id="reset-position" aria-label="Centrar personaje" disabled>↺</button>
+            <button data-direction="right" aria-label="Mover hacia la derecha" disabled>→</button>
+            <button data-direction="down" aria-label="Mover hacia abajo" disabled>↓</button>
+          </div>
+        </div>
+        <div class="voice-actions"><button id="speak" class="primary" disabled>Escuchar</button><button id="cancel-speech" class="secondary" disabled>Detener voz</button><span id="speech-status" role="status" class="sr-only">Toca Escuchar para iniciar la voz.</span></div>
+      </section>
+      <p id="status" class="status" role="status" aria-live="polite">Cargando catálogo…</p>
+      <p id="error" class="error" role="alert" hidden></p>
+      <noscript>Activa JavaScript para reconocer los letreros.</noscript>
+    </main>
+    <footer>FISI / UNSM <span>REALIDAD AUMENTADA</span></footer>
+  </div>
+</body>
+</html>

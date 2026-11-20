@@ -1,0 +1,189 @@
+{
+  "mindarVersion": "1.2.5",
+  "targets": [
+    {
+      "id": "redes-telecomunicaciones-02",
+      "targetIndex": 0,
+      "sourceSha256": "06f905e463075d44419a0cc4248d6db48f6582314a7bd8b434302033baa8c124",
+      "trainingSignature": "6c81743e8e735cce06985ee4217a7fbbc3b23a4c44b8afda288e418f3d3ef49f",
+      "matchRegion": [
+        0,
+        0,
+        150,
+        115
+      ],
+      "outputSha256": "ccabb959e1e9786341a218336daef8b56c52a56ed9239422135d3d78255a6620",
+      "reused": true,
+      "width": 150,
+      "height": 445,
+      "matchingPoints": [
+        87,
+        66,
+        37
+      ],
+      "trackingPoints": [
+        0,
+        27
+      ],
+      "runtimeTrackingPoints": 27
+    },
+    {
+      "id": "sistemas-01",
+      "targetIndex": 1,
+      "sourceSha256": "c81b78b4ed480707c54136ffac9f7db7a97ab403203bada2f3c8d1ec4fca0b89",
+      "trainingSignature": "95a59f5127ec3e61762c31a8b2f4949775bb7456499cdd71e3655ff752c6ef9f",
+      "matchRegion": [
+        0,
+        0,
+        125,
+        115
+      ],
+      "outputSha256": "12b940d330499b9ff1a877749d84e364705ae875bf4bea66907dd93b435d6b62",
+      "reused": true,
+      "width": 125,
+      "height": 395,
+      "matchingPoints": [
+        69,
+        47
+      ],
+      "trackingPoints": [
+        0,
+        21
+      ],
+      "runtimeTrackingPoints": 21
+    },
+    {
+      "id": "sistemas-02",
+      "targetIndex": 2,
+      "sourceSha256": "7ad3dc7827698463489231c33d90d42bdcb4a462925d259b35f98c278f04c3c6",
+      "trainingSignature": "29e617e5347a12c47ae74cfba2d775e1bf3b93fa3b3c6a83a4b1a2bcf5cbb135",
+      "matchRegion": [
+        0,
+        0,
+        155,
+        100
+      ],
+      "outputSha256": "45d3e8082bd5142ac6919830e4f58db1f0f9c8d9b86e8e276cba460e3654d958",
+      "reused": true,
+      "width": 155,
+      "height": 388,
+      "matchingPoints": [
+        68,
+        44,
+        34
+      ],
+      "trackingPoints": [
+        0,
+        18
+      ],
+      "runtimeTrackingPoints": 18
+    },
+    {
+      "id": "telematica-03",
+      "targetIndex": 3,
+      "sourceSha256": "a2866b52dda3a3128b7f72aa953af1a74e709cb1e457839da2610051f20082d1",
+      "trainingSignature": "b0efb04f958f19877d319efffb1225b441e81cbda75efde2d0bceebafe8c7f71",
+      "matchRegion": null,
+      "outputSha256": "0e69b1f40fc525a971e88af6461ede9c138d3355a836895708fbab00c005c144",
+      "reused": true,
+      "width": 156,
+      "height": 150,
+      "matchingPoints": [
+        90,
+        54,
+        43
+      ],
+      "trackingPoints": [
+        0,
+        7
+      ],
+      "runtimeTrackingPoints": 7
+    },
+    {
+      "id": "tutoria",
+      "targetIndex": 4,
+      "sourceSha256": "eac7a89c7f22e1871129b66e05611ae6fc7c26346c0f546d21ca5808d642affb",
+      "trainingSignature": "ab849e926419bc6551e37fec0b6f08e444609a55d25f79438c89eac56c86563d",
+      "matchRegion": null,
+      "outputSha256": "279b02b7d2e29e78b5ce9c3a39fd01e7c444fda04cd2ab05828dec207f413b8b",
+      "reused": true,
+      "width": 168,
+      "height": 260,
+      "matchingPoints": [
+        178,
+        158,
+        129,
+        71
+      ],
+      "trackingPoints": [
+        0,
+        22
+      ],
+      "runtimeTrackingPoints": 22
+    },
+    {
+      "id": "postgrado",
+      "targetIndex": 5,
+      "sourceSha256": "8e7a8f970fcc55dd7c7e14261a494cda5a47b2fd5ec388f73acb2ef8b0784f83",
+      "trainingSignature": "3dc362f503f783773c67603691eb7656125ed2aa01c8980d7984f686d5236b74",
+      "matchRegion": null,
+      "outputSha256": "27fd1becb8108e7b70fe8eebba239548f891344a7861cb5b10f5f63c1fffd3ec",
+      "reused": true,
+      "width": 130,
+      "height": 145,
+      "matchingPoints": [
+        65,
+        44
+      ],
+      "trackingPoints": [
+        0,
+        11
+      ],
+      "runtimeTrackingPoints": 11
+    },
+    {
+      "id": "damas",
+      "targetIndex": 6,
+      "sourceSha256": "d405b2e42e643159f30035a28fd9620557951a952c97e50aaa7239c772d04e0a",
+      "trainingSignature": "26048363fb690d09fd883a7cf4fe2aa5fab97858e6c3aae2e6f057af527da64a",
+      "matchRegion": null,
+      "outputSha256": "fc9531e43582018ed4ff849f3ff90bbc29c1ddedc8823931a3fe2974c9774634",
+      "reused": true,
+      "width": 177,
+      "height": 140,
+      "matchingPoints": [
+        109,
+        88,
+        67
+      ],
+      "trackingPoints": [
+        0,
+        9
+      ],
+      "runtimeTrackingPoints": 9
+    },
+    {
+      "id": "bloque-a",
+      "targetIndex": 7,
+      "sourceSha256": "7f402ffab48d66f6a9610add3d68faa6a392c315618aeda758fa9cce33c52c37",
+      "trainingSignature": "a3a043b9c44d4c07e649ff6fbd6b07877114bdbadd1ad5c36e583a78cd094018",
+      "matchRegion": null,
+      "outputSha256": "8253bc061d9a120c7d469b8f9ed88593c7cabe6560fbc636b6342af8285eec5a",
+      "reused": true,
+      "width": 128,
+      "height": 202,
+      "matchingPoints": [
+        41,
+        35
+      ],
+      "trackingPoints": [
+        0,
+        24
+      ],
+      "runtimeTrackingPoints": 24
+    }
+  ],
+  "outputSha256": "6d8caeb81824e63c748c8c8d7917bc3ac23918a92e2998f31d652bcac7eccb7d",
+  "bytes": 1540421,
+  "validation": "Technical feature extraction only. Physical validation remains pending."
+}
