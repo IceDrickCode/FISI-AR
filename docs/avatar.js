@@ -97,6 +97,13 @@ export function buildByteModel(T) {
     box(0.18, 0.2, 0.18, 0.045, 'white', leg, [0, -0.23, 0]);
     box(0.215, 0.11, 0.29, 0.05, 'violet', leg, [0, -0.375, 0.05], `shoe-${side}`);
   }
+  const orbit = new T.Group(); orbit.name = 'data-orbit'; orbit.position.y = -0.76; root.add(orbit);
+  const halo = mesh(new T.TorusGeometry(0.55, 0.009, 4, 48), 'lavender', orbit, [0,0,0], [1,1,1], 'holo-ring');
+  halo.rotation.x = Math.PI / 2;
+  for (let i = 0; i < 3; i++) {
+    const angle = i * Math.PI * 2 / 3;
+    box(0.065, 0.065, 0.065, 0.012, 'lavender', orbit, [Math.cos(angle)*0.55,0,Math.sin(angle)*0.55], `data-node-${i}`);
+  }
   root.userData.identity = 'Byte — tecnología con raíces amazónicas';
   return root;
 }
@@ -114,17 +121,22 @@ function registerByte() {
       this.last = new T.Vector3(); this.last.copy(this.el.parentEl.object3D.position);
       this.reducedMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
       this.walkUntil = 0;
+      this.orbit = this.model.getObjectByName('data-orbit'); this.celebrateUntil = 0;
     },
-    tick(time) {
+    celebrate() { this.celebrateUntil = (this.el.sceneEl.time || 0) + 1800; },
+    tick(time, delta = 16) {
       if (!this.el.object3D.visible || !this.el.parentEl.object3D.visible) return;
       const parent = this.el.parentEl.object3D.position;
       if (parent.distanceToSquared(this.last) > 0.000001) this.walkUntil = time + 120;
       this.last.copy(parent);
-      const moving = time < this.walkUntil, t = time / 1000;
+      const moving = time < this.walkUntil, celebrating = time < this.celebrateUntil, t = time / 1000;
+      if (!this.reducedMotion) this.orbit.rotation.y += Math.min(delta, 100) / 1000 * (celebrating ? 2 : 0.35);
+      this.orbit.scale.setScalar(celebrating && !this.reducedMotion ? 1.08 + Math.sin(t*9)*0.05 : 1);
       if (this.reducedMotion) { this.model.position.y = 0; return; }
       this.model.position.y = 0.025 + (moving ? Math.sin(t * 11) * 0.015 : 0);
       this.leftArm.rotation.z = -0.15 + (moving ? Math.sin(t * 10) * 0.18 : Math.sin(t * 2) * 0.025);
       this.rightArm.rotation.z = moving ? 0.18 + Math.sin(t * 10 + Math.PI) * 0.18 : 2.3 + Math.sin(t * 4) * 0.14;
+      if (celebrating) { this.leftArm.rotation.z = -2.4 + Math.sin(t*8)*0.12; this.rightArm.rotation.z = 2.4 - Math.sin(t*8)*0.12; }
       this.leftLeg.rotation.x = moving ? Math.sin(t * 10) * 0.3 : 0;
       this.rightLeg.rotation.x = moving ? Math.sin(t * 10 + Math.PI) * 0.3 : 0;
       this.antenna.rotation.z = Math.sin(t * 2.3) * 0.018;

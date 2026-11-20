@@ -1,13 +1,14 @@
 import { initialState, transition } from './state.js';
 import { moveOffset, placeBubble } from './guide-math.js?v=0.3.0';
-import { avatarMarkup } from './avatar.js?v=0.3.0';
+import { avatarMarkup } from './avatar.js?v=0.4.0';
+import { createMissions } from './missions.js?v=0.4.0';
 import { StablePose, TargetLock } from './tracking.js?v=0.3.0';
 
 const $ = id => document.getElementById(id);
 const keyboard = new Set(), pointers = new Map(), actors = new Map(), offsets = new Map();
 const speechAvailable = 'speechSynthesis' in window && 'SpeechSynthesisUtterance' in window;
-let state = initialState(), catalog, scene, arSystem, utterance, terminated = false;
-let point, bubbleSide;
+let state = initialState(), catalog, scene, arSystem, utterance, missions, terminated = false;
+let point, bubbleSide, readingBox;
 const targetLock = new TargetLock();
 const debug = new URLSearchParams(location.search).has('debug');
 const events = [];
@@ -38,12 +39,13 @@ function update(event) {
   state = transition(state, event);
   if (before === state) return;
   const changedTarget = before.activeIndex !== state.activeIndex;
-  if (changedTarget || !state.tracked) { clearMovement(); stopSpeech(); bubbleSide = null; }
+  if (changedTarget || !state.tracked) { clearMovement(); stopSpeech(); bubbleSide = null; readingBox = null; }
   document.body.dataset.tracked = String(state.tracked);
   for (const [index, record] of actors) record.actor.object3D.visible = state.tracked && index === state.activeIndex;
   $('bubble').hidden = !state.tracked;
   document.querySelectorAll('.dpad button').forEach(button => button.disabled = !state.tracked);
   $('speak').disabled = !state.tracked || !speechAvailable;
+  missions?.showRoom(state.tracked ? activeRoom() : null);
   if (state.tracked) {
     const room = activeRoom();
     $('room-label').textContent = room.etiqueta;
@@ -119,8 +121,16 @@ function frame(delta) {
   const width = document.documentElement.clientWidth, height = window.innerHeight;
   const headX = (point.x + 1) * width / 2;
   bubble.style.width = `${Math.min(230, Math.max(160, width * 0.46))}px`;
-  const box = placeBubble({ x: headX, y: (1 - point.y) * height / 2, previousSide: bubbleSide,
+  const proposed = placeBubble({ x: headX, y: (1 - point.y) * height / 2, previousSide: bubbleSide,
     width: bubble.offsetWidth, height: bubble.offsetHeight, viewportWidth: width, viewportHeight: height });
+  // Keep reading controls still while a description or challenge is open.
+  // Tracking continues; only the screen-space card is held during interaction.
+  const layoutKey = `${width}:${height}:${bubble.offsetWidth}:${bubble.offsetHeight}`;
+  const reading = $('room-details').open || $('byte-challenge').open;
+  if (!reading || readingBox?.key !== layoutKey) readingBox = { ...proposed, key: layoutKey };
+  const box = readingBox;
+  box.tail = Math.max(18, Math.min(bubble.offsetWidth - 18, headX - box.left));
+  box.tailY = Math.max(20, Math.min(bubble.offsetHeight - 20, (1 - point.y) * height / 2 - box.top));
   bubbleSide = box.side;
   bubble.style.transform = `translate3d(${box.left}px,${box.top}px,0)`;
   bubble.style.left = '0'; bubble.style.top = '0';
@@ -200,7 +210,7 @@ for (const button of document.querySelectorAll('[data-direction]')) {
 }
 const arrowKeys = { ArrowUp: 'up', ArrowDown: 'down', ArrowLeft: 'left', ArrowRight: 'right' };
 window.addEventListener('keydown', event => {
-  if (!state.tracked || !arrowKeys[event.key] || event.target.matches('input,textarea,select,[contenteditable="true"]')) return;
+  if (!state.tracked || !arrowKeys[event.key] || event.target.closest('dialog,.bubble-content,input,textarea,select,[contenteditable="true"]')) return;
   event.preventDefault(); keyboard.add(arrowKeys[event.key]);
 });
 window.addEventListener('keyup', event => { if (arrowKeys[event.key]) { keyboard.delete(arrowKeys[event.key]); if (state.tracked) log('guideMoved', JSON.stringify(offsets.get(state.activeIndex))); } });
@@ -241,7 +251,8 @@ function renderCatalog() {
     const content = document.createElement('div'), title = document.createElement('h3'), label = document.createElement('p'), link = document.createElement('a');
     title.textContent = room.nombre; label.textContent = room.etiqueta;
     link.textContent = 'Ver referencia'; link.href = room.imagenReferencia; link.target = '_blank'; link.rel = 'noopener';
-    content.append(title, label, link); article.append(image, content); $('catalog').append(article);
+    const stamp = document.createElement('span'); stamp.className = 'catalog-stamp'; stamp.dataset.roomId = room.id;
+    content.append(title, label, stamp, link); article.append(image, content); $('catalog').append(article);
   }
   for (const pending of catalog.pendientes) {
     const li = document.createElement('li'); li.textContent = `${pending.nombre}: ${pending.motivo}`; $('pending-list').append(li);
@@ -251,10 +262,19 @@ function renderCatalog() {
 try {
   if (document.readyState !== 'complete') await new Promise(resolve => window.addEventListener('load', resolve, { once: true }));
   if (!window.AFRAME?.components['mindar-image']) throw new Error('Bibliotecas AR no disponibles.');
-  const response = await fetch('./data/ambientes.json?v=0.3.0'); if (!response.ok) throw new Error('Catálogo no disponible.');
+  const response = await fetch('./data/ambientes.json?v=0.4.0'); if (!response.ok) throw new Error('Catálogo no disponible.');
   catalog = await response.json();
   if (!catalog.ambientes.length || catalog.ambientes.some((room, index) => room.targetIndex !== index)) throw new Error('Índices de objetivos incorrectos.');
   const target = await fetch(catalog.targetFile); if (!target.ok || (await target.arrayBuffer()).byteLength < 100) throw new Error('Archivo .mind ausente o vacío.');
-  renderCatalog(); $('start').textContent = 'Activar cámara'; $('start').disabled = false; $('start').onclick = start;
+  renderCatalog();
+  missions = createMissions(catalog.ambientes, {
+    canAnswer: room => state.tracked && state.activeIndex === room.targetIndex,
+    onEarn: (room, count) => {
+      actors.get(room.targetIndex)?.shape.components['byte-amazonico']?.celebrate();
+      $('status').textContent = `¡Sello conseguido! Tu pasaporte tiene ${count} de ${catalog.ambientes.length} sellos.`;
+      log('stampEarned', room.id);
+    }
+  });
+  $('start').textContent = 'Activar cámara'; $('start').disabled = false; $('start').onclick = start;
   $('status').textContent = 'Listo para explorar. La cámara se activa al tocar el botón.';
 } catch (error) { console.error(error); fail(`Error al cargar: ${error.message}`); }

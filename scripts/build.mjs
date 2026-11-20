@@ -12,7 +12,7 @@ if (target.dataList?.length !== catalog.ambientes.length) throw new Error('El .m
 for (const [index, room] of catalog.ambientes.entries()) {
   if (room.targetIndex !== index || target.dataList[index].targetImage.width !== room.width || target.dataList[index].targetImage.height !== room.height) throw new Error(`Objetivo desalineado: ${room.id}`);
 }
-for (const name of ['index.html', 'app.js', 'state.js', 'guide-math.js', 'tracking.js', 'avatar.js', 'styles.css', 'vendor/aframe-1.5.0.min.js']) {
+for (const name of ['index.html', 'app.js', 'state.js', 'guide-math.js', 'tracking.js', 'avatar.js', 'missions.js', 'styles.css', 'vendor/aframe-1.5.0.min.js']) {
   if ((await fs.stat(path.join(publicDir, name))).size === 0) throw new Error(`Archivo vacío: ${name}`);
 }
 // Copy over the known output directory; no recursive deletion or original-resource mutation.

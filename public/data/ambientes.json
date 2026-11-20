@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 2,
+  "schemaVersion": 3,
   "targetFile": "./assets/ambientes-v3.mind",
   "ambientes": [
     {
@@ -7,9 +7,9 @@
       "targetIndex": 0,
       "nombre": "Laboratorio de Redes y Telecomunicaciones",
       "senalVertical": "Laboratorio 02",
-      "descripcion": "Identificado por su letrero y la señal Laboratorio 02. Sus actividades y equipamiento están pendientes de confirmación con la facultad.",
-      "narracion": "Hola, soy Byte, tu guía de FISI AR. El letrero identifica este ambiente como Laboratorio de Redes y Telecomunicaciones. La señal vertical indica Laboratorio cero dos. Las actividades, el equipamiento y los horarios aún deben confirmarse con la facultad.",
-      "estadoInformacion": "Identificación visual verificada; función institucional pendiente de confirmación.",
+      "descripcion": "Actividad de ejemplo: diseñar una pequeña red de una empresa y comprobar su conectividad.\nRecursos simulados: 24 estaciones y 2 racks con routers y switches.\nDinámica: equipos de 3 estudiantes configuran direcciones IP durante una sesión de 90 minutos.\nHorario ficticio: lunes y miércoles, de 08:00 a 10:00.",
+      "narracion": "Hola, soy Byte. El letrero identifica este ambiente como Laboratorio de Redes y Telecomunicaciones. Te presentaré un ejemplo ficticio, no información oficial. Actividad de ejemplo: diseñar una pequeña red de una empresa y comprobar su conectividad. Recursos simulados: 24 estaciones y 2 racks con routers y switches. Dinámica: equipos de 3 estudiantes configuran direcciones IP durante una sesión de 90 minutos. Horario ficticio: lunes y miércoles, de 08:00 a 10:00. Abre el reto de Byte para conseguir un sello en tu pasaporte.",
+      "estadoInformacion": "Nombre identificado visualmente. Actividades, recursos, cantidades y horarios ficticios de demostración; no son datos oficiales ni mediciones reales.",
       "imagenObjetivo": "./assets/redes-02-target.png",
       "imagenReferencia": "./assets/redes-02-target.png",
       "etiqueta": "Laboratorio 02",
@@ -22,7 +22,18 @@
         0,
         150,
         115
-      ]
+      ],
+      "tipoContenido": "demostracion",
+      "reto": {
+        "pregunta": "¿Cuántas estaciones tiene el laboratorio en este ejemplo?",
+        "opciones": [
+          "12 estaciones",
+          "24 estaciones",
+          "40 estaciones"
+        ],
+        "correcta": 1,
+        "explicacion": "La ficha de demostración propone 24 estaciones para practicar redes."
+      }
     },
     {
       "id": "sistemas-01",
@@ -31,9 +42,9 @@
       "etiqueta": "Laboratorio 01",
       "senalVertical": "Laboratorio 01",
       "resumen": "Dos placas: nombre y señal vertical 01.",
-      "descripcion": "Dos placas: nombre y señal vertical 01. Las actividades, los servicios específicos y los horarios deben confirmarse con la facultad.",
-      "narracion": "Hola, soy Byte, tu guía de FISI AR. Dos placas: nombre y señal vertical 01. La información de actividades y horarios debe confirmarse con la facultad.",
-      "estadoInformacion": "Identificación visual; información institucional por confirmar.",
+      "descripcion": "Actividad de ejemplo: crear un inventario digital para una tienda ficticia.\nRecursos simulados: 30 computadoras, un gestor de base de datos y control de versiones.\nDinámica: registrar 30 productos, relacionar ventas y comprobar las consultas en parejas.\nHorario ficticio: martes y jueves, de 10:00 a 12:00.",
+      "narracion": "Hola, soy Byte. El letrero identifica este ambiente como Laboratorio de Sistemas de Información 01. Te presentaré un ejemplo ficticio, no información oficial. Actividad de ejemplo: crear un inventario digital para una tienda ficticia. Recursos simulados: 30 computadoras, un gestor de base de datos y control de versiones. Dinámica: registrar 30 productos, relacionar ventas y comprobar las consultas en parejas. Horario ficticio: martes y jueves, de 10:00 a 12:00. Abre el reto de Byte para conseguir un sello en tu pasaporte.",
+      "estadoInformacion": "Nombre identificado visualmente. Actividades, recursos, cantidades y horarios ficticios de demostración; no son datos oficiales ni mediciones reales.",
       "imagenObjetivo": "./assets/sistemas-01-target.png",
       "imagenReferencia": "./assets/sistemas-01-target.png",
       "calidad": "experimental",
@@ -44,7 +55,18 @@
         0,
         125,
         115
-      ]
+      ],
+      "tipoContenido": "demostracion",
+      "reto": {
+        "pregunta": "¿Qué proyecto propone esta ficha de ejemplo?",
+        "opciones": [
+          "Un inventario digital",
+          "Una estación meteorológica",
+          "Un mural impreso"
+        ],
+        "correcta": 0,
+        "explicacion": "El inventario permite practicar registros, relaciones y consultas con datos ficticios."
+      }
     },
     {
       "id": "sistemas-02",
@@ -53,9 +75,9 @@
       "etiqueta": "Señal vertical 04",
       "senalVertical": "Señal vertical 04",
       "resumen": "La placa dice Sistemas de Información 02; la señal vertical indica 04.",
-      "descripcion": "La placa dice Sistemas de Información 02; la señal vertical indica 04. Las actividades, los servicios específicos y los horarios deben confirmarse con la facultad.",
-      "narracion": "Hola, soy Byte, tu guía de FISI AR. La placa dice Sistemas de Información 02; la señal vertical indica 04. La información de actividades y horarios debe confirmarse con la facultad.",
-      "estadoInformacion": "Identificación visual; información institucional por confirmar.",
+      "descripcion": "Actividad de ejemplo: desarrollar una aplicación web para reservar equipos ficticios.\nRecursos simulados: 20 estaciones con editor de código, navegador y repositorio de práctica.\nDinámica: equipos de 4 construyen una pantalla, validan formularios y prueban la reserva antes de publicarla.\nHorario ficticio: lunes y viernes, de 14:00 a 16:00. La placa dice 02 y la señal vertical indica 04; conservamos esa diferencia visual.",
+      "narracion": "Hola, soy Byte. El letrero identifica este ambiente como Laboratorio de Sistemas de Información 02. Te presentaré un ejemplo ficticio, no información oficial. Actividad de ejemplo: desarrollar una aplicación web para reservar equipos ficticios. Recursos simulados: 20 estaciones con editor de código, navegador y repositorio de práctica. Dinámica: equipos de 4 construyen una pantalla, validan formularios y prueban la reserva antes de publicarla. Horario ficticio: lunes y viernes, de 14:00 a 16:00. La placa dice 02 y la señal vertical indica 04; conservamos esa diferencia visual. Abre el reto de Byte para conseguir un sello en tu pasaporte.",
+      "estadoInformacion": "Nombre identificado visualmente. Actividades, recursos, cantidades y horarios ficticios de demostración; no son datos oficiales ni mediciones reales.",
       "imagenObjetivo": "./assets/sistemas-02-target.png",
       "imagenReferencia": "./assets/sistemas-02-target.png",
       "calidad": "experimental",
@@ -66,7 +88,18 @@
         0,
         155,
         100
-      ]
+      ],
+      "tipoContenido": "demostracion",
+      "reto": {
+        "pregunta": "En esta práctica, ¿qué se hace antes de publicar la reserva?",
+        "opciones": [
+          "Se omiten los formularios",
+          "Se borran los registros",
+          "Se prueban la pantalla y los formularios"
+        ],
+        "correcta": 2,
+        "explicacion": "La práctica incluye validar formularios y probar el flujo de reserva antes de publicarlo."
+      }
     },
     {
       "id": "telematica-03",
@@ -75,14 +108,25 @@
       "etiqueta": "Laboratorio 03",
       "senalVertical": "Laboratorio 03",
       "resumen": "La placa identifica Telemática; la señal vertical indica 03.",
-      "descripcion": "La placa identifica Telemática; la señal vertical indica 03. Las actividades, los servicios específicos y los horarios deben confirmarse con la facultad.",
-      "narracion": "Hola, soy Byte, tu guía de FISI AR. La placa identifica Telemática; la señal vertical indica 03. La información de actividades y horarios debe confirmarse con la facultad.",
-      "estadoInformacion": "Identificación visual; información institucional por confirmar.",
+      "descripcion": "Actividad de ejemplo: construir un monitor ambiental conectado a un panel web.\nRecursos simulados: 16 puestos con microcontroladores, sensores de humedad y una red de práctica.\nDinámica: cada equipo envía una lectura cada 30 segundos y observa los cambios en un gráfico.\nHorario ficticio: miércoles, de 14:00 a 16:00.",
+      "narracion": "Hola, soy Byte. El letrero identifica este ambiente como Laboratorio de Telemática. Te presentaré un ejemplo ficticio, no información oficial. Actividad de ejemplo: construir un monitor ambiental conectado a un panel web. Recursos simulados: 16 puestos con microcontroladores, sensores de humedad y una red de práctica. Dinámica: cada equipo envía una lectura cada 30 segundos y observa los cambios en un gráfico. Horario ficticio: miércoles, de 14:00 a 16:00. Abre el reto de Byte para conseguir un sello en tu pasaporte.",
+      "estadoInformacion": "Nombre identificado visualmente. Actividades, recursos, cantidades y horarios ficticios de demostración; no son datos oficiales ni mediciones reales.",
       "imagenObjetivo": "./assets/telematica-03-target.png",
       "imagenReferencia": "./assets/telematica-03-target.png",
       "calidad": "experimental",
       "width": 156,
-      "height": 150
+      "height": 150,
+      "tipoContenido": "demostracion",
+      "reto": {
+        "pregunta": "¿Cada cuánto se envía una lectura en el ejemplo?",
+        "opciones": [
+          "Cada 30 segundos",
+          "Una vez al mes",
+          "Cada 4 horas"
+        ],
+        "correcta": 0,
+        "explicacion": "El escenario propone una lectura cada 30 segundos para observar los cambios en el panel."
+      }
     },
     {
       "id": "tutoria",
@@ -91,14 +135,25 @@
       "etiqueta": "Tutoría y Consejería",
       "senalVertical": "Tutoría y Consejería",
       "resumen": "Identificación tomada del cartel superior de Tutoría y Consejería.",
-      "descripcion": "Identificación tomada del cartel superior de Tutoría y Consejería. Las actividades, los servicios específicos y los horarios deben confirmarse con la facultad.",
-      "narracion": "Hola, soy Byte, tu guía de FISI AR. Identificación tomada del cartel superior de Tutoría y Consejería. La información de actividades y horarios debe confirmarse con la facultad.",
-      "estadoInformacion": "Identificación visual; información institucional por confirmar.",
+      "descripcion": "Servicio simulado: acompañamiento para organizar las tareas de un estudiante ficticio.\nSesión de ejemplo: 20 minutos para identificar una dificultad y acordar una meta.\nDinámica: construir un plan de 4 semanas, revisar una meta cada semana y registrar avances.\nAtención ficticia: martes, de 09:00 a 11:00, con reserva de prueba.",
+      "narracion": "Hola, soy Byte. El letrero identifica este ambiente como Tutoría y Consejería. Te presentaré un ejemplo ficticio, no información oficial. Servicio simulado: acompañamiento para organizar las tareas de un estudiante ficticio. Sesión de ejemplo: 20 minutos para identificar una dificultad y acordar una meta. Dinámica: construir un plan de 4 semanas, revisar una meta cada semana y registrar avances. Atención ficticia: martes, de 09:00 a 11:00, con reserva de prueba. Abre el reto de Byte para conseguir un sello en tu pasaporte.",
+      "estadoInformacion": "Nombre identificado visualmente. Actividades, recursos, cantidades y horarios ficticios de demostración; no son datos oficiales ni mediciones reales.",
       "imagenObjetivo": "./assets/tutoria-target.png",
       "imagenReferencia": "./assets/tutoria-target.png",
       "calidad": "experimental",
       "width": 168,
-      "height": 260
+      "height": 260,
+      "tipoContenido": "demostracion",
+      "reto": {
+        "pregunta": "¿Qué se revisa cada semana en este plan de ejemplo?",
+        "opciones": [
+          "El color del letrero",
+          "El avance de una meta",
+          "La cantidad de ventanas"
+        ],
+        "correcta": 1,
+        "explicacion": "El plan de demostración sigue una meta semanal durante cuatro semanas."
+      }
     },
     {
       "id": "postgrado",
@@ -107,14 +162,25 @@
       "etiqueta": "Unidad de Postgrado",
       "senalVertical": "Unidad de Postgrado",
       "resumen": "El cartel superior identifica la Unidad de Postgrado.",
-      "descripcion": "El cartel superior identifica la Unidad de Postgrado. Las actividades, los servicios específicos y los horarios deben confirmarse con la facultad.",
-      "narracion": "Hola, soy Byte, tu guía de FISI AR. El cartel superior identifica la Unidad de Postgrado. La información de actividades y horarios debe confirmarse con la facultad.",
-      "estadoInformacion": "Identificación visual; información institucional por confirmar.",
+      "descripcion": "Actividad de ejemplo: taller de diseño de un proyecto de investigación ficticio.\nRecursos simulados: sala para 12 participantes, proyector y documentos de práctica.\nDinámica: una sesión de 2 horas organiza el proyecto en 4 hitos: pregunta, método, prueba y presentación.\nHorario ficticio: sábado, de 09:00 a 11:00. No representa un programa ni una convocatoria real.",
+      "narracion": "Hola, soy Byte. El letrero identifica este ambiente como Unidad de Postgrado. Te presentaré un ejemplo ficticio, no información oficial. Actividad de ejemplo: taller de diseño de un proyecto de investigación ficticio. Recursos simulados: sala para 12 participantes, proyector y documentos de práctica. Dinámica: una sesión de 2 horas organiza el proyecto en 4 hitos: pregunta, método, prueba y presentación. Horario ficticio: sábado, de 09:00 a 11:00. No representa un programa ni una convocatoria real. Abre el reto de Byte para conseguir un sello en tu pasaporte.",
+      "estadoInformacion": "Nombre identificado visualmente. Actividades, recursos, cantidades y horarios ficticios de demostración; no son datos oficiales ni mediciones reales.",
       "imagenObjetivo": "./assets/postgrado-target.png",
       "imagenReferencia": "./assets/postgrado-target.png",
       "calidad": "experimental",
       "width": 130,
-      "height": 145
+      "height": 145,
+      "tipoContenido": "demostracion",
+      "reto": {
+        "pregunta": "¿Cuántos hitos organiza el taller de ejemplo?",
+        "opciones": [
+          "2 hitos",
+          "8 hitos",
+          "4 hitos"
+        ],
+        "correcta": 2,
+        "explicacion": "Los cuatro hitos del ejercicio son pregunta, método, prueba y presentación."
+      }
     },
     {
       "id": "damas",
@@ -123,14 +189,25 @@
       "etiqueta": "Servicios Higiénicos Damas",
       "senalVertical": "Servicios Higiénicos Damas",
       "resumen": "La placa identifica los Servicios Higiénicos Damas.",
-      "descripcion": "La placa identifica los Servicios Higiénicos Damas. Las actividades, los servicios específicos y los horarios deben confirmarse con la facultad.",
-      "narracion": "Hola, soy Byte, tu guía de FISI AR. La placa identifica los Servicios Higiénicos Damas. La información de actividades y horarios debe confirmarse con la facultad.",
-      "estadoInformacion": "Identificación visual; información institucional por confirmar.",
+      "descripcion": "Escenario de ejemplo: una revisión de cuidado y uso responsable de servicios higiénicos.\nLista simulada: comprobar limpieza del lavamanos, disponibilidad de papel y estado del piso.\nDinámica: detectar un grifo con fuga en una situación ficticia y registrar un aviso de mantenimiento.\nFranja de revisión ficticia: 08:00, 12:00 y 16:00. No indica horarios reales de acceso o limpieza.",
+      "narracion": "Hola, soy Byte. El letrero identifica este ambiente como Servicios Higiénicos Damas. Te presentaré un ejemplo ficticio, no información oficial. Escenario de ejemplo: una revisión de cuidado y uso responsable de servicios higiénicos. Lista simulada: comprobar limpieza del lavamanos, disponibilidad de papel y estado del piso. Dinámica: detectar un grifo con fuga en una situación ficticia y registrar un aviso de mantenimiento. Franja de revisión ficticia: 08:00, 12:00 y 16:00. No indica horarios reales de acceso o limpieza. Abre el reto de Byte para conseguir un sello en tu pasaporte.",
+      "estadoInformacion": "Nombre identificado visualmente. Actividades, recursos, cantidades y horarios ficticios de demostración; no son datos oficiales ni mediciones reales.",
       "imagenObjetivo": "./assets/damas-target.png",
       "imagenReferencia": "./assets/damas-target.png",
       "calidad": "experimental",
       "width": 177,
-      "height": 140
+      "height": 140,
+      "tipoContenido": "demostracion",
+      "reto": {
+        "pregunta": "En la situación de ejemplo, ¿qué haces ante un grifo con fuga?",
+        "opciones": [
+          "Ignorarlo",
+          "Registrar un aviso de mantenimiento",
+          "Dejarlo abierto"
+        ],
+        "correcta": 1,
+        "explicacion": "El ejercicio propone registrar el problema para que pueda atenderse."
+      }
     },
     {
       "id": "bloque-a",
@@ -139,14 +216,25 @@
       "etiqueta": "Bloque A · FISI",
       "senalVertical": "Bloque A · FISI",
       "resumen": "El letrero exterior identifica el Bloque A de la FISI.",
-      "descripcion": "El letrero exterior identifica el Bloque A de la FISI. Las actividades, los servicios específicos y los horarios deben confirmarse con la facultad.",
-      "narracion": "Hola, soy Byte, tu guía de FISI AR. El letrero exterior identifica el Bloque A de la FISI. La información de actividades y horarios debe confirmarse con la facultad.",
-      "estadoInformacion": "Identificación visual; información institucional por confirmar.",
+      "descripcion": "Experiencia de ejemplo: punto de bienvenida para una exploración de la señalización de FISI.\nMisión sugerida: reconocer 3 letreros distintos y resolver sus retos con Byte.\nDinámica: observar la placa, leer su ficha de demostración y ganar un sello por respuesta correcta.\nTiempo estimado ficticio: 10 minutos. El pasaporte registra sellos, sin calcular rutas ni ubicar al estudiante.",
+      "narracion": "Hola, soy Byte. El letrero identifica este ambiente como Bloque A — FISI. Te presentaré un ejemplo ficticio, no información oficial. Experiencia de ejemplo: punto de bienvenida para una exploración de la señalización de FISI. Misión sugerida: reconocer 3 letreros distintos y resolver sus retos con Byte. Dinámica: observar la placa, leer su ficha de demostración y ganar un sello por respuesta correcta. Tiempo estimado ficticio: 10 minutos. El pasaporte registra sellos, sin calcular rutas ni ubicar al estudiante. Abre el reto de Byte para conseguir un sello en tu pasaporte.",
+      "estadoInformacion": "Nombre identificado visualmente. Actividades, recursos, cantidades y horarios ficticios de demostración; no son datos oficiales ni mediciones reales.",
       "imagenObjetivo": "./assets/bloque-a-target.png",
       "imagenReferencia": "./assets/bloque-a-target.png",
       "calidad": "experimental",
       "width": 128,
-      "height": 202
+      "height": 202,
+      "tipoContenido": "demostracion",
+      "reto": {
+        "pregunta": "¿Cuántos letreros propone explorar esta misión de ejemplo?",
+        "opciones": [
+          "3 letreros",
+          "20 letreros",
+          "1 letrero"
+        ],
+        "correcta": 0,
+        "explicacion": "La misión sugerida propone tres letreros; puedes completar los nueve sellos del catálogo."
+      }
     },
     {
       "id": "caballeros",
@@ -154,9 +242,9 @@
       "nombre": "Servicios Higiénicos Caballeros",
       "etiqueta": "Servicios Higiénicos Caballeros",
       "resumen": "La placa identifica los Servicios Higiénicos Caballeros.",
-      "descripcion": "El letrero dice Servicios Higiénicos Caballeros y presenta un pictograma masculino. Los horarios y condiciones de acceso deben confirmarse con la facultad.",
-      "narracion": "Hola, soy Byte, tu guía de FISI AR. Este letrero identifica los Servicios Higiénicos Caballeros. Los horarios y condiciones de acceso deben confirmarse con la facultad.",
-      "estadoInformacion": "Identificación visual; horarios y condiciones de acceso por confirmar.",
+      "descripcion": "Escenario de ejemplo: una revisión de cuidado y uso responsable de servicios higiénicos.\nLista simulada: revisar lavamanos, disponibilidad de papel y señalización de piso mojado.\nDinámica: identificar una incidencia ficticia y comunicarla mediante una ficha de mantenimiento de prueba.\nFranja de revisión ficticia: 08:00, 12:00 y 16:00. No indica horarios reales de acceso o limpieza.",
+      "narracion": "Hola, soy Byte. El letrero identifica este ambiente como Servicios Higiénicos Caballeros. Te presentaré un ejemplo ficticio, no información oficial. Escenario de ejemplo: una revisión de cuidado y uso responsable de servicios higiénicos. Lista simulada: revisar lavamanos, disponibilidad de papel y señalización de piso mojado. Dinámica: identificar una incidencia ficticia y comunicarla mediante una ficha de mantenimiento de prueba. Franja de revisión ficticia: 08:00, 12:00 y 16:00. No indica horarios reales de acceso o limpieza. Abre el reto de Byte para conseguir un sello en tu pasaporte.",
+      "estadoInformacion": "Nombre identificado visualmente. Actividades, recursos, cantidades y horarios ficticios de demostración; no son datos oficiales ni mediciones reales.",
       "imagenObjetivo": "./assets/caballeros-target.png",
       "imagenReferencia": "./assets/caballeros-target.png",
       "calidad": "experimental: foto nítida con reflejos; validación física pendiente",
@@ -181,7 +269,18 @@
           250,
           428
         ]
-      ]
+      ],
+      "tipoContenido": "demostracion",
+      "reto": {
+        "pregunta": "¿Qué incidencia aparece en esta lista de ejemplo?",
+        "opciones": [
+          "Un examen de programación",
+          "Una reserva de laboratorio",
+          "La señalización de piso mojado"
+        ],
+        "correcta": 2,
+        "explicacion": "El ejemplo incluye revisar si una zona con piso mojado está señalizada."
+      }
     }
   ],
   "pendientes": []

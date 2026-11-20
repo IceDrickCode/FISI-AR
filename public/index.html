@@ -7,10 +7,10 @@
   <meta name="description" content="FISI-AR: explora la señalización de la FISI, UNSM, con un guía virtual.">
   <title>FISI-AR · Descubre tu facultad</title>
   <link rel="icon" href="data:,">
-  <link rel="stylesheet" href="./styles.css?v=0.3.1">
+  <link rel="stylesheet" href="./styles.css?v=0.4.0">
   <script src="./vendor/aframe-1.5.0.min.js" defer></script>
   <script src="./vendor/mindar-image-aframe-1.2.5.prod.js" defer></script>
-  <script type="module" src="./app.js?v=0.3.0"></script>
+  <script type="module" src="./app.js?v=0.4.0"></script>
 </head>
 <body>
   <div id="ar-stage" aria-label="Vista de realidad aumentada"></div>
@@ -23,6 +23,8 @@
         <p class="intro">Reconoce un letrero, conoce su nombre y mueve a tu guía virtual por la escena.</p>
         <button id="start" class="primary" disabled>Preparando recursos…</button>
         <p class="privacy">Solo cámara, sin micrófono. El reconocimiento se procesa en tu navegador.</p>
+        <div class="mission-intro"><span class="eyebrow">MISIÓN BYTE</span><h2>Explora. Resuelve. Colecciona.</h2><p>Escanea un letrero y supera su reto para sumar un sello a tu pasaporte digital.</p><button class="secondary" data-open-passport>Ver pasaporte · <span data-passport-count>0/9 sellos</span></button></div>
+        <p class="demo-note">Contenido de demostración: las actividades, cantidades y horarios de las fichas son ejemplos ficticios, no información oficial de la facultad.</p>
         <div class="catalog-heading"><h2>Letreros disponibles</h2><span id="catalog-count"></span></div>
         <div id="catalog" class="catalog"></div>
         <p class="help">En los laboratorios, enfoca el nombre y deja visible la señal vertical: ambas placas ayudan al seguimiento. El número por sí solo no basta. Mantén pulsadas las flechas para mover al guía o usa el teclado. Toca el centro para centrarlo.</p>
@@ -31,13 +33,14 @@
       <section id="scanner" hidden aria-label="Escáner activo">
         <span class="scanner-brand">◈ FISI AR</span>
         <button id="stop" class="secondary close-camera">Cerrar cámara</button>
+        <button class="ar-passport secondary" data-open-passport aria-label="Abrir pasaporte de Misión Byte">◇ <span data-passport-count>0/9 sellos</span></button>
         <div id="viewfinder" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
         <p id="scan-hint">Encuadra el letrero de uno de los ambientes del catálogo. Evita reflejos y mueve el celular despacio.</p>
         <article id="bubble" class="speech-bubble" hidden aria-label="Mensaje de Byte">
           <div class="bubble-heading"><span id="room-label" class="eyebrow"></span><button id="collapse-bubble" aria-label="Plegar información" aria-expanded="true">−</button></div>
           <div class="bubble-content" tabindex="0" role="region" aria-labelledby="room-name">
             <h2 id="room-name"></h2>
-            <div id="bubble-body"><p id="room-summary"></p><details id="room-details"><summary>Más información</summary><p id="room-description"></p></details></div>
+            <div id="bubble-body"><p id="room-summary"></p><p class="data-badge">Datos de ejemplo · no oficiales</p><details id="room-details"><summary>Más información</summary><p id="room-description"></p></details><details id="byte-challenge" class="byte-challenge"><summary>✧ Reto de Byte</summary><p id="mission-question"></p><div id="mission-answers"></div><p id="mission-result" role="status" aria-live="polite"></p></details></div>
           </div>
         </article>
         <div id="movement" class="movement" role="group" aria-label="Mover al personaje">
@@ -58,5 +61,6 @@
     </main>
     <footer>FISI / UNSM <span>REALIDAD AUMENTADA</span></footer>
   </div>
+  <dialog id="passport-dialog" aria-labelledby="passport-title"><div class="passport-heading"><div><span class="eyebrow">MISIÓN BYTE</span><h2 id="passport-title">Tu pasaporte FISI</h2></div><button id="close-passport" class="secondary" aria-label="Cerrar pasaporte">×</button></div><p>Un letrero, un reto y un nuevo sello. <strong data-passport-count>0/9 sellos</strong></p><ul id="passport-list"></ul><p id="passport-storage"></p></dialog>
 </body>
 </html>
