@@ -10,7 +10,11 @@ Abre el sitio publicado en GitHub Pages desde Chrome para Android, toca **Activa
 
 Mantén pulsadas las flechas de pantalla o teclado para desplazar a Byte. El centro restablece su posición. La burbuja se puede plegar; la narración empieza al tocar **Escuchar**. Perder el objetivo oculta al guía y cancela la voz.
 
-El catálogo contiene ocho ambientes. Caballeros está pendiente de una foto sin reflejos. Se conserva la discrepancia visual Sistemas de Información 02 / señal vertical 04. Las actividades y horarios requieren confirmación de la facultad. La validación técnica con imágenes sintéticas no sustituye las pruebas con los letreros reales y un teléfono.
+El catálogo contiene nueve ambientes, incluido **Servicios Higiénicos Caballeros**, incorporado con la foto del 20/11/2026. Su objetivo usa el texto y el pictograma para reducir la influencia de reflejos; la placa sigue siendo metálica. Se conserva la discrepancia visual Sistemas de Información 02 / señal vertical 04. Las actividades y horarios requieren confirmación de la facultad.
+
+El seguimiento separa el ancla calculada por MindAR del ancla visual de Byte. Exige cuatro poses válidas durante al menos 140 ms, aplica mediana y suavizado de posición/rotación/escala, y rechaza saltos anómalos. Una pérdida breve conserva la última pose hasta 180 ms; después oculta al guía. El procesamiento lento no se confunde con una pérdida: una pose sin actualización caduca a los 2,5 s. Las flechas mantienen su desplazamiento local independiente. La burbuja conserva su lado cerca de los límites y el renderizador usa antialiasing con resolución de hasta 2×.
+
+La validación técnica con imágenes sintéticas y secuencias de poses no sustituye las pruebas con los letreros reales y un teléfono. Quedan pendientes estabilidad caminando frente al letrero, reflejos bajo diferentes iluminaciones, velocidad y calidad gráfica en Android. Consulta `audit/validacion-2026-11-20.md`.
 
 ## Desarrollo
 

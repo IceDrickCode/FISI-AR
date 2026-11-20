@@ -59,6 +59,11 @@ test('Cada entrada del catálogo coincide con su imagen y con el binario ordenad
         assert.ok(point.x >= x0*frame.scale && point.x < x1*frame.scale && point.y >= y0*frame.scale && point.y < y1*frame.scale, `Rasgo fuera de la placa de nombre: ${room.id}`);
       }
     }
+    if (room.featureRegions) {
+      const inside = (p, scale) => room.featureRegions.some(([x0,y0,x1,y1]) => p.x >= x0*scale && p.x < x1*scale && p.y >= y0*scale && p.y < y1*scale);
+      for (const frame of target.dataList[i].matchingData) for (const point of [...frame.maximaPoints, ...frame.minimaPoints]) assert.ok(inside(point, frame.scale), `Reflejo fuera del texto/pictograma: ${room.id}`);
+      for (const frame of target.dataList[i].trackingData) for (const point of frame.points) assert.ok(inside(point, frame.scale), `Seguimiento fuera del texto/pictograma: ${room.id}`);
+    }
     const bytes = await fs.readFile(new URL(`../public/${room.imagenObjetivo}`, import.meta.url));
     assert.equal(crypto.createHash('sha256').update(bytes).digest('hex'), report.targets[i].sourceSha256);
   }

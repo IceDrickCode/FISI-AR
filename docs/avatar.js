@@ -122,7 +122,7 @@ function registerByte() {
       this.last.copy(parent);
       const moving = time < this.walkUntil, t = time / 1000;
       if (this.reducedMotion) { this.model.position.y = 0; return; }
-      this.model.position.y = 0.025 + Math.sin(t * (moving ? 11 : 2.4)) * (moving ? 0.015 : 0.022);
+      this.model.position.y = 0.025 + (moving ? Math.sin(t * 11) * 0.015 : 0);
       this.leftArm.rotation.z = -0.15 + (moving ? Math.sin(t * 10) * 0.18 : Math.sin(t * 2) * 0.025);
       this.rightArm.rotation.z = moving ? 0.18 + Math.sin(t * 10 + Math.PI) * 0.18 : 2.3 + Math.sin(t * 4) * 0.14;
       this.leftLeg.rotation.x = moving ? Math.sin(t * 10) * 0.3 : 0;

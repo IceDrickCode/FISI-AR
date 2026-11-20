@@ -1,0 +1,22 @@
+{
+  "sourceFile": "WhatsApp Image 2026-11-20 at 08.42.07.jpeg",
+  "sourceSha256": "3bbf5d4c0ee20a28d8b4065e05d1534e25a558b2538f673b155b6cc0e0912725",
+  "sourceSize": [
+    899,
+    1599
+  ],
+  "crop": [
+    125,
+    445,
+    765,
+    875
+  ],
+  "outputSize": [
+    640,
+    430
+  ],
+  "outputSha256": "b582feac6efafc114fdd0d95215c9c7417271d6878144b5611bc5f2e450bcfb7",
+  "evidence": "SERVICIOS HIGIÉNICOS CABALLEROS, MEN’S BATHROOM y pictograma masculino.",
+  "limitations": "Reflejos fuertes en centro de placa metálica. Rasgos de detección y seguimiento restringidos a texto/pictograma. Prueba física pendiente.",
+  "originalUnchanged": true
+}

@@ -1,12 +1,14 @@
 import { initialState, transition } from './state.js';
-import { moveOffset, placeBubble } from './guide-math.js';
-import { avatarMarkup } from './avatar.js';
+import { moveOffset, placeBubble } from './guide-math.js?v=0.3.0';
+import { avatarMarkup } from './avatar.js?v=0.3.0';
+import { StablePose, TargetLock } from './tracking.js?v=0.3.0';
 
 const $ = id => document.getElementById(id);
 const keyboard = new Set(), pointers = new Map(), actors = new Map(), offsets = new Map();
 const speechAvailable = 'speechSynthesis' in window && 'SpeechSynthesisUtterance' in window;
 let state = initialState(), catalog, scene, arSystem, utterance, terminated = false;
-let point;
+let point, bubbleSide;
+const targetLock = new TargetLock();
 const debug = new URLSearchParams(location.search).has('debug');
 const events = [];
 function log(type, detail = '') {
@@ -36,7 +38,7 @@ function update(event) {
   state = transition(state, event);
   if (before === state) return;
   const changedTarget = before.activeIndex !== state.activeIndex;
-  if (changedTarget || !state.tracked) { clearMovement(); stopSpeech(); }
+  if (changedTarget || !state.tracked) { clearMovement(); stopSpeech(); bubbleSide = null; }
   document.body.dataset.tracked = String(state.tracked);
   for (const [index, record] of actors) record.actor.object3D.visible = state.tracked && index === state.activeIndex;
   $('bubble').hidden = !state.tracked;
@@ -85,9 +87,25 @@ function fail(message) {
   $('start').onclick = () => location.reload();
 }
 function frame(delta) {
-  if (terminated || !state.tracked) return;
+  if (terminated || !scene?.camera || !['scanning', 'found', 'lost'].includes(state.phase)) return;
+  const now = performance.now(), visible = [];
+  for (const [index, record] of actors) {
+    const raw = record.anchor.object3D;
+    // Only count actual camera pose updates, never repeated rendering frames.
+    if (raw.visible && raw.matrix !== record.lastMatrix) {
+      record.lastMatrix = raw.matrix; record.filter.sample(raw.matrix, now);
+    }
+    if (record.filter.tick(now, raw.visible)) {
+      record.display.object3D.matrix.copy(record.filter.matrix);
+      record.display.object3D.matrixWorldNeedsUpdate = true;
+      visible.push(index);
+    }
+  }
+  const selected = targetLock.select(visible);
+  if (selected !== null && (!state.tracked || selected !== state.activeIndex)) update({ type: 'found', index: selected });
+  else if (selected === null && state.tracked) update({ type: 'lost', index: state.activeIndex });
+  if (!state.tracked) return;
   const record = actors.get(state.activeIndex);
-  if (!record?.anchor.object3D.visible || !scene.camera) { $('bubble').hidden = true; return; }
   const directions = new Set([...keyboard, ...pointers.values()]);
   const offset = moveOffset(offsets.get(state.activeIndex), directions, delta);
   offsets.set(state.activeIndex, offset);
@@ -100,9 +118,10 @@ function frame(delta) {
   const bubble = $('bubble'); bubble.hidden = false;
   const width = document.documentElement.clientWidth, height = window.innerHeight;
   const headX = (point.x + 1) * width / 2;
-  bubble.style.width = `${Math.min(230, Math.max(160, Math.max(headX, width - headX) - 64))}px`;
-  const box = placeBubble({ x: headX, y: (1 - point.y) * height / 2,
+  bubble.style.width = `${Math.min(230, Math.max(160, width * 0.46))}px`;
+  const box = placeBubble({ x: headX, y: (1 - point.y) * height / 2, previousSide: bubbleSide,
     width: bubble.offsetWidth, height: bubble.offsetHeight, viewportWidth: width, viewportHeight: height });
+  bubbleSide = box.side;
   bubble.style.transform = `translate3d(${box.left}px,${box.top}px,0)`;
   bubble.style.left = '0'; bubble.style.top = '0';
   bubble.dataset.side = box.side; bubble.style.setProperty('--tail-left', `${box.tail}px`); bubble.style.setProperty('--tail-top', `${box.tailY}px`);
@@ -119,8 +138,8 @@ async function start() {
     if (!AFRAME.components['fisi-frame']) AFRAME.registerComponent('fisi-frame', { tick(_time, delta) { frame(delta || 0); } });
     scene = document.createElement('a-scene'); scene.setAttribute('embedded', '');
     scene.setAttribute('fisi-frame', '');
-    scene.setAttribute('mindar-image', `imageTargetSrc: ${catalog.targetFile}; autoStart: false; maxTrack: 1; uiLoading: no; uiScanning: no; uiError: no; warmupTolerance: 5; missTolerance: 8`);
-    scene.setAttribute('renderer', 'colorManagement: true; alpha: true; antialias: false; precision: medium');
+    scene.setAttribute('mindar-image', `imageTargetSrc: ${catalog.targetFile}; autoStart: false; maxTrack: 1; uiLoading: no; uiScanning: no; uiError: no; warmupTolerance: 5; missTolerance: 3; filterMinCF: 0.001; filterBeta: 10`);
+    scene.setAttribute('renderer', 'colorManagement: true; alpha: true; antialias: true; precision: high');
     scene.setAttribute('vr-mode-ui', 'enabled: false'); scene.setAttribute('xr-mode-ui', 'enabled: false');
     scene.setAttribute('device-orientation-permission-ui', 'enabled: false');
     scene.innerHTML = '<a-camera position="0 0 0" look-controls="enabled: false" wasd-controls="enabled: false"></a-camera><a-light type="ambient" intensity="0.85"></a-light><a-light type="directional" position="1 2 3" intensity="0.8"></a-light>';
@@ -128,17 +147,26 @@ async function start() {
       const anchor = document.createElement('a-entity');
       anchor.setAttribute('mindar-image-target', `targetIndex: ${room.targetIndex}`);
       anchor.dataset.targetIndex = room.targetIndex;
-      anchor.innerHTML = `<a-entity class="guide-position" visible="false">${avatarMarkup()}</a-entity>`;
-      const actor = anchor.querySelector('.guide-position'), shape = anchor.querySelector('.avatar-shape');
-      actors.set(room.targetIndex, { anchor, actor, shape, baseX: room.height / room.width > 2 ? -0.48 : -0.3, baseY: Math.min(0.45, room.height / room.width * 0.18) });
+      const display = document.createElement('a-entity'); display.className = 'stable-anchor';
+      display.object3D.matrixAutoUpdate = false;
+      display.innerHTML = `<a-entity class="guide-position" visible="false">${avatarMarkup()}</a-entity>`;
+      const actor = display.querySelector('.guide-position'), shape = display.querySelector('.avatar-shape');
+      const avatarScale = Math.min(0.65, Math.max(0.32, room.height / room.width * 0.48));
+      shape.setAttribute('scale', `${avatarScale} ${avatarScale} ${avatarScale}`);
+      actors.set(room.targetIndex, { anchor, display, actor, shape, filter: new StablePose(AFRAME.THREE), baseX: room.height / room.width > 2 ? -0.48 : -0.3, baseY: Math.min(0.45, room.height / room.width * 0.18) });
       offsets.set(room.targetIndex, { x: 0, y: 0 });
-      anchor.addEventListener('targetFound', () => { if (!terminated) update({ type: 'found', index: room.targetIndex }); });
-      anchor.addEventListener('targetLost', () => { if (!terminated) update({ type: 'lost', index: room.targetIndex }); });
-      scene.append(anchor);
+      anchor.addEventListener('targetFound', () => { if (!terminated) log('rawFound', room.targetIndex); });
+      anchor.addEventListener('targetLost', () => {
+        if (terminated) return;
+        log('rawLost', room.targetIndex);
+        if (state.activeIndex === room.targetIndex) { clearMovement(); stopSpeech(); }
+      });
+      scene.append(anchor, display);
     }
     scene.addEventListener('arReady', () => { if (!terminated) update('ready'); });
     scene.addEventListener('arError', () => fail('No se pudo abrir la cámara. Comprueba el permiso del sitio y que ninguna otra aplicación la esté usando.'));
     scene.addEventListener('renderstart', () => {
+      scene.renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
       arSystem = scene.systems['mindar-image-system'];
       const nativeStartAR = arSystem._startAR.bind(arSystem);
       // Version-pinned MindAR starts asynchronously; also catch failures loading targets or WebGL.
@@ -218,11 +246,12 @@ function renderCatalog() {
   for (const pending of catalog.pendientes) {
     const li = document.createElement('li'); li.textContent = `${pending.nombre}: ${pending.motivo}`; $('pending-list').append(li);
   }
+  document.querySelector('.pending').hidden = !catalog.pendientes.length;
 }
 try {
   if (document.readyState !== 'complete') await new Promise(resolve => window.addEventListener('load', resolve, { once: true }));
   if (!window.AFRAME?.components['mindar-image']) throw new Error('Bibliotecas AR no disponibles.');
-  const response = await fetch('./data/ambientes.json'); if (!response.ok) throw new Error('Catálogo no disponible.');
+  const response = await fetch('./data/ambientes.json?v=0.3.0'); if (!response.ok) throw new Error('Catálogo no disponible.');
   catalog = await response.json();
   if (!catalog.ambientes.length || catalog.ambientes.some((room, index) => room.targetIndex !== index)) throw new Error('Índices de objetivos incorrectos.');
   const target = await fetch(catalog.targetFile); if (!target.ok || (await target.arrayBuffer()).byteLength < 100) throw new Error('Archivo .mind ausente o vacío.');

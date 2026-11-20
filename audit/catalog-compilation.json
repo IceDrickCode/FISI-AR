@@ -181,9 +181,55 @@
         24
       ],
       "runtimeTrackingPoints": 24
+    },
+    {
+      "id": "caballeros",
+      "targetIndex": 8,
+      "sourceSha256": "b582feac6efafc114fdd0d95215c9c7417271d6878144b5611bc5f2e450bcfb7",
+      "trainingSignature": "3cb75c108eaa99b91c5947942f2b7c2e2de5a0caa47e9928f8872fa25d3a7230",
+      "matchRegion": null,
+      "featureRegions": [
+        [
+          15,
+          115,
+          400,
+          295
+        ],
+        [
+          495,
+          15,
+          630,
+          285
+        ],
+        [
+          18,
+          340,
+          250,
+          428
+        ]
+      ],
+      "outputSha256": "422a771bcd0e0e69ceabb378b761a885c34dc0a3e858f531d63bea1cf3650fc3",
+      "reused": false,
+      "width": 640,
+      "height": 430,
+      "matchingPoints": [
+        205,
+        206,
+        199,
+        183,
+        173,
+        153,
+        115,
+        79
+      ],
+      "trackingPoints": [
+        29,
+        21
+      ],
+      "runtimeTrackingPoints": 21
     }
   ],
-  "outputSha256": "6d8caeb81824e63c748c8c8d7917bc3ac23918a92e2998f31d652bcac7eccb7d",
-  "bytes": 1540421,
+  "outputSha256": "535c0d44ddb7e7cce65bc83e4794d2eb7eba1a66a2cf48e3a33efd5b541e234a",
+  "bytes": 1901822,
   "validation": "Technical feature extraction only. Physical validation remains pending."
 }

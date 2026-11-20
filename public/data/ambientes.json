@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "targetFile": "./assets/ambientes.mind",
+  "targetFile": "./assets/ambientes-v3.mind",
   "ambientes": [
     {
       "id": "redes-telecomunicaciones-02",
@@ -147,13 +147,42 @@
       "calidad": "experimental",
       "width": 128,
       "height": 202
-    }
-  ],
-  "pendientes": [
+    },
     {
       "id": "caballeros",
+      "targetIndex": 8,
       "nombre": "Servicios Higiénicos Caballeros",
-      "motivo": "Reflejos intensos en las fotos 28 y 32. Se necesita una nueva captura sin brillo antes de crear un objetivo fiable."
+      "etiqueta": "Servicios Higiénicos Caballeros",
+      "resumen": "La placa identifica los Servicios Higiénicos Caballeros.",
+      "descripcion": "El letrero dice Servicios Higiénicos Caballeros y presenta un pictograma masculino. Los horarios y condiciones de acceso deben confirmarse con la facultad.",
+      "narracion": "Hola, soy Byte, tu guía de FISI AR. Este letrero identifica los Servicios Higiénicos Caballeros. Los horarios y condiciones de acceso deben confirmarse con la facultad.",
+      "estadoInformacion": "Identificación visual; horarios y condiciones de acceso por confirmar.",
+      "imagenObjetivo": "./assets/caballeros-target.png",
+      "imagenReferencia": "./assets/caballeros-target.png",
+      "calidad": "experimental: foto nítida con reflejos; validación física pendiente",
+      "width": 640,
+      "height": 430,
+      "featureRegions": [
+        [
+          15,
+          115,
+          400,
+          295
+        ],
+        [
+          495,
+          15,
+          630,
+          285
+        ],
+        [
+          18,
+          340,
+          250,
+          428
+        ]
+      ]
     }
-  ]
+  ],
+  "pendientes": []
 }

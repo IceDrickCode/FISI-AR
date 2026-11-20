@@ -16,7 +16,7 @@ for (const [index, room] of catalog.ambientes.entries()) {
   if (room.targetIndex !== index) throw new Error('Los índices del catálogo deben ser consecutivos y ordenados.');
   const bytes = await fs.readFile(new URL(`public/${room.imagenObjetivo}`, root));
   const sourceSha256 = hash(bytes);
-  const trainingSignature = hash(JSON.stringify({ sourceSha256, matchRegion: room.matchRegion || null, version: 1 }));
+  const trainingSignature = hash(JSON.stringify({ sourceSha256, matchRegion: room.matchRegion || null, ...(room.featureRegions ? { featureRegions: room.featureRegions } : {}), version: 1 }));
   const cache = new URL(`audit/compiled/${room.id}.mind`, root);
   const meta = new URL(`audit/compiled/${room.id}.json`, root);
   let compiled, reused = false, alreadyFiltered = false;
@@ -42,21 +42,24 @@ for (const [index, room] of catalog.ambientes.entries()) {
   } else console.log(`Reutilizado: ${room.nombre}`);
   // Use unique name-plate features for detection; keep the full planar marker for tracking.
   // This avoids the repeated vertical LABORATORIO layout dominating classification.
-  if (room.matchRegion && !alreadyFiltered) {
-    const [x0, y0, x1, y1] = room.matchRegion;
+  if ((room.matchRegion || room.featureRegions) && !alreadyFiltered) {
+    const regions = room.featureRegions || [room.matchRegion];
+    const inside = (point, scale) => regions.some(([x0, y0, x1, y1]) => point.x >= x0 * scale && point.x < x1 * scale && point.y >= y0 * scale && point.y < y1 * scale);
     for (const keyframe of compiled.matchingData) {
-      const inside = point => point.x >= x0 * keyframe.scale && point.x < x1 * keyframe.scale && point.y >= y0 * keyframe.scale && point.y < y1 * keyframe.scale;
-      keyframe.maximaPoints = keyframe.maximaPoints.filter(inside);
-      keyframe.minimaPoints = keyframe.minimaPoints.filter(inside);
+      keyframe.maximaPoints = keyframe.maximaPoints.filter(p => inside(p, keyframe.scale));
+      keyframe.minimaPoints = keyframe.minimaPoints.filter(p => inside(p, keyframe.scale));
       keyframe.maximaPointsCluster = buildClusters({ points: keyframe.maximaPoints });
       keyframe.minimaPointsCluster = buildClusters({ points: keyframe.minimaPoints });
     }
+    // Reflective metal can create features that move with the lighting. Use the
+    // persistent printed text/pictogram for tracking as well as classification.
+    if (room.featureRegions) for (const frame of compiled.trackingData) frame.points = frame.points.filter(p => inside(p, frame.scale));
   }
   compiler.data = [compiled];
   const binary = Buffer.from(compiler.exportData());
   await fs.writeFile(cache, binary);
   const metrics = {
-    id: room.id, targetIndex: index, sourceSha256, trainingSignature, matchRegion: room.matchRegion || null, outputSha256: hash(binary), reused,
+    id: room.id, targetIndex: index, sourceSha256, trainingSignature, matchRegion: room.matchRegion || null, ...(room.featureRegions ? { featureRegions: room.featureRegions } : {}), outputSha256: hash(binary), reused,
     width: compiled.targetImage.width, height: compiled.targetImage.height,
     matchingPoints: compiled.matchingData.map(s => s.maximaPoints.length + s.minimaPoints.length),
     trackingPoints: compiled.trackingData.map(s => s.points.length),
