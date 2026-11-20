@@ -7,7 +7,7 @@
   <meta name="description" content="FISI-AR: explora la señalización de la FISI, UNSM, con un guía virtual.">
   <title>FISI-AR · Descubre tu facultad</title>
   <link rel="icon" href="data:,">
-  <link rel="stylesheet" href="./styles.css?v=0.3.0">
+  <link rel="stylesheet" href="./styles.css?v=0.3.1">
   <script src="./vendor/aframe-1.5.0.min.js" defer></script>
   <script src="./vendor/mindar-image-aframe-1.2.5.prod.js" defer></script>
   <script type="module" src="./app.js?v=0.3.0"></script>
@@ -35,8 +35,10 @@
         <p id="scan-hint">Encuadra el letrero de uno de los ambientes del catálogo. Evita reflejos y mueve el celular despacio.</p>
         <article id="bubble" class="speech-bubble" hidden aria-label="Mensaje de Byte">
           <div class="bubble-heading"><span id="room-label" class="eyebrow"></span><button id="collapse-bubble" aria-label="Plegar información" aria-expanded="true">−</button></div>
-          <h2 id="room-name"></h2>
-          <div id="bubble-body"><p id="room-summary"></p><details id="room-details"><summary>Más información</summary><p id="room-description"></p></details></div>
+          <div class="bubble-content" tabindex="0" role="region" aria-labelledby="room-name">
+            <h2 id="room-name"></h2>
+            <div id="bubble-body"><p id="room-summary"></p><details id="room-details"><summary>Más información</summary><p id="room-description"></p></details></div>
+          </div>
         </article>
         <div id="movement" class="movement" role="group" aria-label="Mover al personaje">
           <span>Mover guía</span>
